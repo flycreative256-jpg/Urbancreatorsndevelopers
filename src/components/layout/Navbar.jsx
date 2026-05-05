@@ -113,7 +113,7 @@ export default function Navbar() {
                     to={link.path}
                     onClick={() => setMobileMenuOpen(false)}
                     className={cn(
-                      'block text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 py-3.5 border-b border-white/5',
+                      'block text-base font-bold uppercase tracking-[0.2em] transition-all duration-300 py-3.5 border-b border-white/5',
                       location.pathname === link.path ? 'text-secondary' : 'text-gray-300 hover:text-white'
                     )}
                   >

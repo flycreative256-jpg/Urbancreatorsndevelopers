@@ -107,10 +107,10 @@ export default function About() {
           {founders.map((founder, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="relative group h-[500px] sm:h-[580px] w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-white/10 cursor-pointer"
             >
               {/* Image Layer */}
@@ -143,10 +143,10 @@ export default function About() {
                     )}
                   </div>
 
-                  {/* Revealable Socials - Standardized Icons */}
-                  <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full">
+                  {/* Socials - Always visible on mobile, reveal on hover for desktop */}
+                  <div className="grid grid-rows-[1fr] lg:grid-rows-[0fr] lg:group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full">
                     <div className="overflow-hidden">
-                      <div className="pt-6 mt-6 border-t border-white/10 flex justify-center gap-4">
+                      <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-white/10 flex justify-center gap-3 sm:gap-4">
                         {[
                           { icon: <LinkedinIcon size={18} />, link: founder.socials.linkedin, color: 'hover:bg-[#0A66C2]' },
                           { icon: <InstagramIcon size={18} />, link: founder.socials.instagram, color: 'hover:bg-[#E4405F]' },

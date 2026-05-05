@@ -54,7 +54,7 @@ export default function FeaturedProjects() {
             key={project.id}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className={`relative rounded-xl overflow-hidden group cursor-pointer ${project.colSpan} h-[280px] sm:h-[300px] md:h-auto`}
           >
