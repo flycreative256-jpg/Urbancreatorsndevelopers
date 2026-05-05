@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import SectionWrapper from '../ui/SectionWrapper';
@@ -95,13 +96,14 @@ export default function ContactPreview() {
               </select>
             </div>
 
-            <button
+            <motion.button
               type="submit"
+              whileTap={{ scale: 0.95 }}
               className="w-full py-4 bg-primary text-white font-bold uppercase tracking-wider rounded flex items-center justify-center gap-2 hover:bg-secondary transition-colors"
             >
               Submit Request
               <Send size={18} />
-            </button>
+            </motion.button>
           </form>
         </div>
         

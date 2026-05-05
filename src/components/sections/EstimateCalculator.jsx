@@ -106,8 +106,9 @@ export default function EstimateCalculator() {
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {projectTypes.map((type) => (
-                  <button
+                  <motion.button
                     key={type.id}
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => setProjectType(type)}
                     className={`p-4 rounded-2xl border transition-all duration-500 text-center flex flex-col items-center gap-3 ${projectType.id === type.id
                       ? 'bg-secondary border-secondary text-primary shadow-lg scale-105'
@@ -116,7 +117,7 @@ export default function EstimateCalculator() {
                   >
                     <type.icon size={20} />
                     <span className="text-xs font-black uppercase tracking-tight">{type.label}</span>
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </div>
@@ -128,8 +129,9 @@ export default function EstimateCalculator() {
               </label>
               <div className="space-y-4">
                 {qualityPackages.map((pkg) => (
-                  <button
+                  <motion.button
                     key={pkg.id}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => setQuality(pkg)}
                     className={`w-full p-6 rounded-3xl border transition-all duration-500 text-left flex justify-between items-center ${quality.id === pkg.id
                       ? 'bg-white/10 border-secondary text-white shadow-xl translate-x-2'
@@ -144,7 +146,7 @@ export default function EstimateCalculator() {
                       }`}>
                       {quality.id === pkg.id && <div className="w-2 h-2 bg-primary rounded-full"></div>}
                     </div>
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </div>
@@ -165,9 +167,12 @@ export default function EstimateCalculator() {
                 </div>
               </div>
 
-              <button className="w-full mt-8 btn-liquid-gold py-6 rounded-3xl font-black uppercase tracking-widest flex items-center justify-center gap-3 text-sm">
+              <motion.button 
+                whileTap={{ scale: 0.95 }}
+                className="w-full mt-8 btn-liquid-gold py-6 rounded-3xl font-black uppercase tracking-widest flex items-center justify-center gap-3 text-sm"
+              >
                 Get Detailed Quote <ArrowRight size={18} />
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>

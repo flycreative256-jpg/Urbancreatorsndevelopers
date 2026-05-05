@@ -51,21 +51,21 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            {navLinks.map((link) => (
-              <motion.div key={link.name} whileTap={{ scale: 0.95 }}>
+            {navLinks.map((navItem) => (
+              <motion.div key={navItem.name} whileTap={{ scale: 0.95 }}>
                 <Link
-                  to={link.path}
+                  to={navItem.path}
                   className={cn(
                     'text-[10px] lg:text-xs font-semibold uppercase tracking-[0.1em] transition-all duration-300 relative group',
-                    location.pathname === link.path 
+                    location.pathname === navItem.path 
                       ? 'text-secondary drop-shadow-[0_0_8px_rgba(194,149,69,0.5)]' 
                       : 'text-gray-200 hover:text-white'
                   )}
                 >
-                  {link.name}
+                  {navItem.name}
                   <span className={cn(
                     "absolute -bottom-1.5 left-0 w-0 h-[2px] bg-secondary transition-all duration-300 group-hover:w-full rounded-full",
-                    location.pathname === link.path && "w-full shadow-[0_0_10px_rgba(194,149,69,0.8)]"
+                    location.pathname === navItem.path && "w-full shadow-[0_0_10px_rgba(194,149,69,0.8)]"
                   )}></span>
                 </Link>
               </motion.div>
@@ -73,7 +73,7 @@ export default function Navbar() {
             <motion.div whileTap={{ scale: 0.95 }}>
               <Link
                 to="/estimate"
-                className="px-6 py-2.5 btn-liquid-gold text-primary font-bold rounded-xl uppercase text-[10px] tracking-widest shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+                className="px-6 py-2.5 btn-liquid-gold text-primary font-bold rounded-xl uppercase text-[10px] tracking-widest shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap"
               >
                 Free Estimate
               </Link>
@@ -111,25 +111,25 @@ export default function Navbar() {
               className="md:hidden absolute top-[calc(100%+0.5rem)] left-0 right-0 bg-[#0a0a0a]/95 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden z-[60]"
             >
               <div className="px-6 py-6 flex flex-col gap-2">
-                {navLinks.map((link) => (
-                  <motion.div key={link.name} whileTap={{ scale: 0.98 }}>
+                {navLinks.map((navItem) => (
+                  <motion.div key={navItem.name} whileTap={{ scale: 0.98 }}>
                     <Link
-                      to={link.path}
+                      to={navItem.path}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
                         'block text-base font-bold uppercase tracking-[0.2em] transition-all duration-300 py-3.5 border-b border-white/5',
-                        location.pathname === link.path ? 'text-secondary' : 'text-gray-300 hover:text-white'
+                        location.pathname === navItem.path ? 'text-secondary' : 'text-gray-300 hover:text-white'
                       )}
                     >
-                      {link.name}
+                      {navItem.name}
                     </Link>
                   </motion.div>
                 ))}
-                <motion.div whileTap={{ scale: 0.95 }}>
+                <motion.div whileTap={{ scale: 0.95 }} className="w-full">
                   <Link
                     to="/estimate"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full text-center px-6 py-4 btn-liquid-gold text-primary font-bold rounded-2xl mt-4 tracking-[0.2em] uppercase text-xs shadow-2xl active:scale-95 transition-transform"
+                    className="block w-full text-center px-6 py-4 btn-liquid-gold text-primary font-bold rounded-2xl mt-4 tracking-[0.2em] uppercase text-xs shadow-2xl transition-transform"
                   >
                     Free Estimate
                   </Link>
