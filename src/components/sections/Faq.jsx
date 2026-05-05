@@ -108,9 +108,9 @@ export default function Faq() {
       {/* Cinematic Background Layer - Dark Mode Integration */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/faq_bg.png"
+          src="/faq_premium_bg.png"
           alt="Construction Background"
-          className="w-full h-full object-cover opacity-50 blur-lg scale-105 brightness-75"
+          className="w-full h-full object-cover opacity-40 brightness-75 grayscale-[0.2]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/80 to-primary"></div>
       </div>
