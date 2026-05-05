@@ -110,7 +110,7 @@ export default function Faq() {
         <img
           src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2000&q=80"
           alt="Construction Background"
-          className="w-full h-full object-cover opacity-60 brightness-90"
+          className="w-full h-full object-cover opacity-80 brightness-75"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/40 to-primary/80"></div>
       </div>
