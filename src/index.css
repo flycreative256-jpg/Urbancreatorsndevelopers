@@ -61,7 +61,7 @@
     backface-visibility: hidden;
   }
   .glass-dark-liquid {
-    @apply bg-primary/60 border border-white/10 shadow-2xl;
+    @apply bg-primary/80 border border-white/10 shadow-2xl;
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     transform: translateZ(0);
