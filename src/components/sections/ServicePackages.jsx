@@ -53,11 +53,11 @@ const packages = [
 export default function ServicePackages() {
   return (
     <SectionWrapper id="packages" bg="bg-primary text-white">
-      <div className="text-center mb-16">
-        <span className="text-secondary font-semibold tracking-wider uppercase text-sm">Transparent Pricing</span>
-        <h2 className="text-4xl md:text-5xl mt-2 mb-6 text-white">Service Packages</h2>
-        <div className="w-24 h-1 bg-secondary mx-auto"></div>
-        <p className="mt-6 text-gray-300 max-w-2xl mx-auto">Choose the perfect tier that matches your vision. We deliver excellence across all levels.</p>
+      <div className="text-center mb-12 sm:mb-16">
+        <span className="text-secondary font-semibold tracking-wider uppercase text-xs sm:text-sm">Transparent Pricing</span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl mt-2 mb-4 sm:mb-6 text-white font-bold leading-tight">Service Packages</h2>
+        <div className="w-20 h-1 bg-secondary mx-auto"></div>
+        <p className="mt-6 text-gray-400 text-base sm:text-lg max-w-2xl mx-auto px-4">Choose the perfect tier that matches your vision. We deliver excellence across all levels.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
@@ -68,9 +68,9 @@ export default function ServicePackages() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            className={`relative p-8 rounded-2xl transition-all duration-500 flex flex-col group hover:-translate-y-4 hover:shadow-2xl ${
+            className={`relative p-6 sm:p-8 rounded-2xl transition-all duration-500 flex flex-col group hover:-translate-y-2 sm:hover:-translate-y-4 hover:shadow-2xl ${
               pkg.popular 
-                ? 'glass-dark-liquid border-2 border-secondary scale-105 shadow-[0_0_40px_-10px_rgba(194,149,69,0.3)] z-10' 
+                ? 'glass-dark-liquid border-2 border-secondary md:scale-105 shadow-[0_0_40px_-10px_rgba(194,149,69,0.3)] z-10' 
                 : 'glass-liquid border border-white/10 hover:border-white/30'
             }`}
           >
@@ -80,10 +80,10 @@ export default function ServicePackages() {
               </div>
             )}
             
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-              <p className="text-gray-400 text-sm mb-6">{pkg.target}</p>
-              <div className="text-secondary font-heading font-bold text-3xl">
+            <div className="text-center mb-6 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 leading-tight">{pkg.name}</h3>
+              <p className="text-gray-400 text-xs sm:text-sm mb-4 sm:mb-6">{pkg.target}</p>
+              <div className="text-secondary font-heading font-bold text-2xl sm:text-3xl">
                 {pkg.price}
               </div>
             </div>

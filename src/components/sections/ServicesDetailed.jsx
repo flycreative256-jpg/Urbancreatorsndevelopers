@@ -58,24 +58,24 @@ export default function ServicesDetailed() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="glass-liquid p-8 rounded-3xl relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 shadow-xl border border-white/40"
+            className="relative p-6 sm:p-8 rounded-2xl transition-all duration-500 flex flex-col group hover:-translate-y-2 sm:hover:-translate-y-4 hover:shadow-2xl glass-dark-liquid border border-white/10 hover:border-white/20"
           >
             {/* Hover Glow */}
             <div className="absolute top-0 right-0 w-40 h-40 bg-secondary/10 rounded-full blur-[40px] -z-10 group-hover:bg-secondary/30 transition-colors duration-500"></div>
             
-            <div className="w-16 h-16 glass-liquid rounded-2xl flex items-center justify-center text-primary mb-6 shadow-md border border-white/50 group-hover:bg-secondary group-hover:text-white transition-colors duration-500">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 glass-liquid rounded-2xl flex items-center justify-center text-secondary mb-6 shadow-md border border-white/10 group-hover:bg-secondary group-hover:text-primary transition-colors duration-500">
               <Icon size={32} />
             </div>
             
-            <h3 className="text-2xl font-bold text-primary mb-4">{service.title}</h3>
-            <p className="text-gray-600 leading-relaxed mb-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 leading-tight">{service.title}</h3>
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 font-medium">
               {service.description}
             </p>
             
-            <ul className="space-y-3">
+            <ul className="space-y-3 mt-auto">
               {service.features.map((feature, i) => (
-                <li key={i} className="flex items-center text-sm font-medium text-gray-700">
-                  <div className="w-1.5 h-1.5 bg-secondary rounded-full mr-3"></div>
+                <li key={i} className="flex items-center text-xs sm:text-sm font-medium text-gray-300">
+                  <div className="w-1.5 h-1.5 bg-secondary rounded-full mr-3 shrink-0"></div>
                   {feature}
                 </li>
               ))}

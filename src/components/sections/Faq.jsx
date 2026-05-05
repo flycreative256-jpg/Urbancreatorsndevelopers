@@ -35,17 +35,17 @@ const FaqItem = ({ faq, index }) => {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.8 }}
-      className="group mb-8"
+      className="group mb-4 sm:mb-8"
     >
       <div 
-        className={`relative overflow-hidden transition-all duration-700 rounded-[2.5rem] border backdrop-blur-2xl ${
+        className={`relative overflow-hidden transition-all duration-700 rounded-[1.5rem] sm:rounded-[2.5rem] border backdrop-blur-2xl ${
           isOpen 
           ? 'bg-white/15 border-secondary/40 shadow-[0_40px_100px_rgba(0,0,0,0.4)]' 
           : 'bg-white/5 border-white/10 hover:border-white/30 shadow-xl'
         }`}
       >
         {/* Animated Background Index */}
-        <div className={`absolute -right-4 -top-8 text-[12rem] font-black pointer-events-none transition-all duration-1000 select-none ${
+        <div className={`absolute -right-4 -top-8 text-[8rem] sm:text-[12rem] font-black pointer-events-none transition-all duration-1000 select-none ${
           isOpen ? 'text-secondary opacity-[0.1] translate-y-4' : 'text-white opacity-[0.05]'
         }`}>
           {index + 1}
@@ -53,25 +53,25 @@ const FaqItem = ({ faq, index }) => {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="relative z-10 w-full text-left p-8 md:p-10 flex justify-between items-center gap-6"
+          className="relative z-10 w-full text-left p-6 sm:p-10 flex justify-between items-center gap-6"
         >
-          <div className="flex items-center gap-6">
-            <span className={`hidden md:flex w-12 h-12 rounded-2xl items-center justify-center font-black text-sm border transition-all duration-500 ${
+          <div className="flex items-center gap-4 sm:gap-6">
+            <span className={`hidden sm:flex w-12 h-12 rounded-2xl items-center justify-center font-black text-sm border transition-all duration-500 ${
               isOpen ? 'bg-secondary border-secondary text-white scale-110' : 'bg-white/5 border-white/10 text-white/60'
             }`}>
               {String(index + 1).padStart(2, '0')}
             </span>
-            <h3 className={`text-xl md:text-2xl font-bold tracking-tight transition-colors duration-500 max-w-2xl ${
+            <h3 className={`text-lg sm:text-2xl font-bold tracking-tight transition-colors duration-500 max-w-2xl ${
               isOpen ? 'text-white' : 'text-white/90'
             }`}>
               {faq.question}
             </h3>
           </div>
           
-          <div className={`shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-700 ${
+          <div className={`shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-700 ${
             isOpen ? 'bg-secondary text-white rotate-[135deg]' : 'bg-white/10 text-white'
           }`}>
-            <Plus size={24} strokeWidth={2.5} />
+            <Plus size={20} className="sm:size-6" strokeWidth={2.5} />
           </div>
         </button>
 
@@ -83,14 +83,14 @@ const FaqItem = ({ faq, index }) => {
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="relative z-10 px-8 md:px-28 pb-12">
-                <div className="w-12 h-1 bg-secondary/40 mb-8 rounded-full"></div>
-                <p className="text-white/80 text-lg md:text-xl leading-relaxed font-medium">
+              <div className="relative z-10 px-6 sm:px-28 pb-10 sm:pb-12">
+                <div className="w-12 h-1 bg-secondary/40 mb-6 sm:mb-8 rounded-full"></div>
+                <p className="text-white/80 text-base sm:text-xl leading-relaxed font-medium">
                   {faq.answer}
                 </p>
                 
                 {/* Decoration */}
-                <div className="mt-8 flex gap-2">
+                <div className="mt-6 sm:mt-8 flex gap-2">
                   <div className="w-2 h-2 rounded-full bg-secondary"></div>
                   <div className="w-2 h-2 rounded-full bg-secondary/60"></div>
                   <div className="w-2 h-2 rounded-full bg-secondary/30"></div>
@@ -109,24 +109,19 @@ export default function Faq() {
     <div className="relative overflow-hidden bg-primary">
       {/* Cinematic Background Layer - Dark Mode Integration */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/faq-bg.png" 
-          alt="Construction Background" 
-          className="w-full h-full object-cover opacity-35 grayscale brightness-75" 
-        />
         <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/80 to-primary"></div>
       </div>
 
       <SectionWrapper id="faq" bg="bg-transparent" className="relative z-10">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-20 gap-8">
             <div className="max-w-2xl">
               <span className="inline-block text-secondary font-black tracking-[0.4em] uppercase text-[10px] mb-4 bg-secondary/10 px-4 py-1.5 rounded-full border border-secondary/20">
                 Information Hub
               </span>
-              <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9]">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9] sm:leading-[1.1]">
                 Expertly <br />
-                <span className="text-secondary">Answered.</span>
+                <span className="text-secondary italic">Answered.</span>
               </h2>
             </div>
             <p className="text-gray-400 font-medium md:max-w-xs text-sm leading-relaxed mb-2">

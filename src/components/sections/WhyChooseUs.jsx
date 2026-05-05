@@ -33,11 +33,11 @@ export default function WhyChooseUs() {
   return (
     <SectionWrapper id="why-choose-us" bg="bg-primary text-white">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <span className="text-secondary font-semibold tracking-wider uppercase text-sm">The Urban Advantage</span>
-          <h2 className="text-4xl md:text-5xl mt-2 mb-6">Why Choose Urban Creators?</h2>
-          <div className="w-24 h-1 bg-secondary mb-8"></div>
-          <p className="text-gray-300 text-lg leading-relaxed mb-10">
+        <div className="lg:sticky lg:top-32">
+          <span className="text-secondary font-semibold tracking-wider uppercase text-xs sm:text-sm">The Urban Advantage</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl mt-2 mb-6 font-bold leading-tight">Why Choose Urban Creators?</h2>
+          <div className="w-20 h-1 bg-secondary mb-8"></div>
+          <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-10">
             We understand that building a luxury home or commercial space is a significant investment. Our approach is designed to give you complete peace of mind, combining civil engineering precision with architectural elegance.
           </p>
 
@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
           </div>
         </div>
 
-        <div className="relative h-[600px] rounded-2xl overflow-hidden">
+        <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden mt-8 lg:mt-0">
           <img 
             src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" 
             alt="Modern Architecture" 
@@ -71,17 +71,17 @@ export default function WhyChooseUs() {
           />
           <div className="absolute inset-0 bg-primary/40"></div>
           
-          <div className="absolute bottom-8 left-8 right-8 glass-dark-liquid p-6 rounded-xl">
-            <p className="text-xl font-medium italic text-white mb-4">
+          <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 glass-dark-liquid p-4 sm:p-6 rounded-xl border border-white/10 backdrop-blur-xl">
+            <p className="text-lg sm:text-xl font-medium italic text-white mb-4 leading-relaxed">
               "They don't just build houses; they craft lifestyles. The attention to detail and transparency was unmatched."
             </p>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-secondary text-primary font-bold flex items-center justify-center">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-secondary text-primary font-bold flex items-center justify-center text-sm sm:text-base">
                 AK
               </div>
               <div>
-                <h4 className="font-bold text-white">Mr. Ab. Khalique Khatik</h4>
-                <p className="text-secondary text-sm">Owner</p>
+                <h4 className="font-bold text-white text-sm sm:text-base">Mr. Ab. Khalique Khatik</h4>
+                <p className="text-secondary text-[10px] sm:text-sm uppercase tracking-widest font-black">Managing Partner</p>
               </div>
             </div>
           </div>

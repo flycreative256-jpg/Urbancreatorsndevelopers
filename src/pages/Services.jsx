@@ -35,17 +35,17 @@ export default function Services() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-xl px-6 py-2 rounded-full border border-white/10 mb-10 shadow-2xl"
+            className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-xl px-5 sm:px-6 py-2 rounded-full border border-white/10 mb-8 sm:mb-10 shadow-2xl"
           >
             <Activity className="text-secondary animate-pulse" size={14} />
-            <span className="text-white/40 font-black tracking-[0.5em] uppercase text-[9px]">Full-Stream Solutions v3.0</span>
+            <span className="text-white/40 font-black tracking-[0.4em] sm:tracking-[0.5em] uppercase text-[8px] sm:text-[9px]">Full-Stream Solutions v3.0</span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-[9rem] font-black text-white tracking-tighter leading-[0.8] mb-12 uppercase"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] font-black text-white tracking-tighter leading-[0.9] sm:leading-[0.8] mb-8 sm:mb-12 uppercase"
           >
             Our <br /><span className="text-secondary italic font-serif lowercase tracking-normal bg-gradient-to-r from-secondary to-secondary/30 bg-clip-text text-transparent">capabilities.</span>
           </motion.h1>
@@ -54,7 +54,7 @@ export default function Services() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-gray-400 text-xl md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed"
+            className="text-gray-400 text-lg sm:text-xl md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed"
           >
             From conceptual blueprints to the final structural polish, we engineer luxury with mathematical precision and artistic soul.
           </motion.p>
@@ -128,12 +128,12 @@ export default function Services() {
         </div>
 
         {/* ── Service Packages ────────────────────────────── */}
-        <div className="mt-48 mb-20">
-          <div className="text-center mb-20">
-            <span className="text-secondary font-black tracking-[0.4em] uppercase text-[10px] mb-4 block">Structured Investment</span>
-            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-tight">Service <span className="text-secondary italic">Tiers.</span></h2>
+        <div className="mt-24 sm:mt-32 md:mt-48 mb-20">
+          <div className="text-center mb-12 sm:mb-20">
+            <span className="text-secondary font-black tracking-[0.4em] uppercase text-[9px] sm:text-[10px] mb-4 block">Structured Investment</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-tight">Service <span className="text-secondary italic">Tiers.</span></h2>
           </div>
-          <div className="-mx-4 sm:-mx-6 lg:-mx-8">
+          <div className="-mx-4 sm:mx-0">
             <ServicePackages />
           </div>
         </div>

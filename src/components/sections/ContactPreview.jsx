@@ -12,46 +12,46 @@ export default function ContactPreview() {
 
   return (
     <SectionWrapper id="contact-preview" bg="bg-gray-50">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
         
         {/* Contact Info */}
-        <div>
-          <span className="text-secondary font-semibold tracking-wider uppercase text-sm">Get In Touch</span>
-          <h2 className="text-4xl md:text-5xl text-primary mt-2 mb-6">Let's Discuss Your Next Project</h2>
-          <div className="w-24 h-1 bg-secondary mb-10"></div>
+        <div className="text-center lg:text-left">
+          <span className="text-secondary font-semibold tracking-wider uppercase text-xs sm:text-sm">Get In Touch</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl text-primary mt-2 mb-4 sm:mb-6 font-bold leading-tight">Let's Discuss Your Next Project</h2>
+          <div className="w-20 h-1 bg-secondary mb-8 sm:mb-10 mx-auto lg:mx-0"></div>
           
-          <p className="text-gray-600 mb-10 leading-relaxed text-lg">
+          <p className="text-gray-600 mb-8 sm:mb-10 leading-relaxed text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
             Whether you're looking to build a luxury home or a commercial complex, our team of expert civil engineers is ready to help you every step of the way.
           </p>
-
-          <div className="space-y-8">
+ 
+          <div className="space-y-6 sm:space-y-8 text-left">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 glass-liquid rounded-full flex items-center justify-center text-secondary shrink-0 border border-white/40 shadow-lg">
-                <Phone size={20} />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/5 rounded-full flex items-center justify-center text-secondary shrink-0 border border-primary/10 shadow-md">
+                <Phone size={18} className="sm:size-5" />
               </div>
               <div>
-                <h4 className="text-lg font-bold text-primary mb-1">Call Us</h4>
-                <p className="text-gray-600">+91 72181 77879</p>
+                <h4 className="text-base sm:text-lg font-bold text-primary mb-1">Call Us</h4>
+                <p className="text-gray-600 text-sm sm:text-base">+91 72181 77879</p>
               </div>
             </div>
             
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 glass-liquid rounded-full flex items-center justify-center text-secondary shrink-0 border border-white/40 shadow-lg">
-                <Mail size={20} />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/5 rounded-full flex items-center justify-center text-secondary shrink-0 border border-primary/10 shadow-md">
+                <Mail size={18} className="sm:size-5" />
               </div>
               <div>
-                <h4 className="text-lg font-bold text-primary mb-1">Email Us</h4>
-                <p className="text-gray-600">info@urbancreators.com</p>
+                <h4 className="text-base sm:text-lg font-bold text-primary mb-1">Email Us</h4>
+                <p className="text-gray-600 text-sm sm:text-base">info@urbancreators.com</p>
               </div>
             </div>
             
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 glass-liquid rounded-full flex items-center justify-center text-secondary shrink-0 border border-white/40 shadow-lg">
-                <MapPin size={20} />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/5 rounded-full flex items-center justify-center text-secondary shrink-0 border border-primary/10 shadow-md">
+                <MapPin size={18} className="sm:size-5" />
               </div>
               <div>
-                <h4 className="text-lg font-bold text-primary mb-1">Visit Office</h4>
-                <p className="text-gray-600">Near Ajanta Chaufully, Jalgaon – 425001</p>
+                <h4 className="text-base sm:text-lg font-bold text-primary mb-1">Visit Office</h4>
+                <p className="text-gray-600 text-sm sm:text-base">Near Ajanta Chaufully, Jalgaon – 425001</p>
               </div>
             </div>
           </div>

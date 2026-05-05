@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
 export default function Navbar() {
@@ -30,8 +31,8 @@ export default function Navbar() {
       className={cn(
         'fixed z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] glass-dark-liquid border-white/10 shadow-2xl',
         isScrolled 
-          ? 'top-0 left-0 right-0 rounded-b-[2rem] border-b py-2 md:py-3' 
-          : 'top-4 md:top-6 left-[max(1rem,calc(50%-40rem))] right-[max(1rem,calc(50%-40rem))] rounded-[2rem] border py-4 md:py-5'
+          ? 'top-0 left-0 right-0 rounded-b-2xl border-b py-2 md:py-3' 
+          : 'top-4 md:top-6 left-4 right-4 md:left-[max(1.5rem,calc(50%-40rem))] md:right-[max(1.5rem,calc(50%-40rem))] rounded-3xl border py-4 md:py-5'
       )}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -43,7 +44,7 @@ export default function Navbar() {
               alt="Urban Creators & Developers" 
               className={cn(
                 "w-auto object-contain transition-all duration-500 drop-shadow-lg",
-                isScrolled ? "h-10 md:h-12" : "h-14 md:h-16"
+                isScrolled ? "h-8 md:h-10" : "h-10 md:h-14"
               )} 
             />
           </Link>
@@ -89,32 +90,48 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-[110%] left-4 right-4 glass-dark-liquid rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
-          <div className="px-6 py-8 flex flex-col gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={cn(
-                  'block text-lg font-bold uppercase tracking-wider transition-colors',
-                  location.pathname === link.path ? 'text-secondary' : 'text-gray-200 hover:text-white'
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Link
-              to="/contact"
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-center px-6 py-4 btn-liquid-gold text-primary font-bold rounded-xl mt-4 tracking-widest uppercase shadow-lg"
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-[-1] md:hidden"
+            />
+            <motion.div 
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              className="md:hidden absolute top-[calc(100%+0.5rem)] left-0 right-0 bg-[#0a0a0a]/95 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden z-[60]"
             >
-              Get Quote
-            </Link>
-          </div>
-        </div>
-      )}
+              <div className="px-6 py-10 flex flex-col gap-6">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={cn(
+                      'block text-lg font-bold uppercase tracking-[0.2em] transition-all duration-300 py-3 border-b border-white/5',
+                      location.pathname === link.path ? 'text-secondary' : 'text-gray-300 hover:text-white'
+                    )}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+                <Link
+                  to="/estimate"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-center px-6 py-5 btn-liquid-gold text-primary font-bold rounded-2xl mt-4 tracking-[0.3em] uppercase text-sm shadow-2xl active:scale-95 transition-transform"
+                >
+                  Free Estimate
+                </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

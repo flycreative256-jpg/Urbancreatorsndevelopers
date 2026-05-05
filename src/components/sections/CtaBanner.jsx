@@ -13,22 +13,23 @@ export default function CtaBanner() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/50"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-10">
-        <div className="max-w-2xl">
-          <h2 className="text-4xl md:text-6xl text-white font-bold mb-4">
-            Ready to Build Your <span className="text-secondary">Dream Home?</span>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center justify-between gap-10">
+        <div className="max-w-3xl text-center lg:text-left">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl text-white font-bold mb-6 leading-tight">
+            Ready to Build Your <br className="hidden sm:block" />
+            <span className="text-secondary italic">Dream Space?</span>
           </h2>
-          <p className="text-gray-300 text-lg leading-relaxed">
-            Partner with Urban Creators & Developers to bring your vision to life. From concept to completion, we deliver excellence at every step.
+          <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Partner with Urban Creators & Developers to bring your vision to life. From conceptual blueprints to structural completion, we deliver excellence.
           </p>
         </div>
         
-        <div className="shrink-0">
+        <div className="shrink-0 w-full lg:w-auto">
           <Link
             to="/contact"
-            className="px-10 py-5 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl flex items-center gap-2"
+            className="w-full lg:w-auto px-10 py-5 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl flex items-center justify-center gap-3 active:scale-95 transition-all shadow-2xl"
           >
-            Get A Free Quote
+            Get Free Quote
             <ArrowRight size={20} />
           </Link>
         </div>

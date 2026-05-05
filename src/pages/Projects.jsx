@@ -28,23 +28,23 @@ export default function Projects() {
 
   return (
     <div className="w-full">
-      <section className="relative pt-40 pb-24 bg-primary text-center">
+      <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 bg-primary text-center">
         <div className="absolute inset-0 z-0">
           <img src="/projects/2.png" alt="Projects" className="w-full h-full object-cover opacity-10" />
         </div>
-        <div className="relative z-10">
-          <h1 className="text-5xl font-bold text-white mb-4">Our Portfolio</h1>
-          <p className="text-secondary tracking-wider uppercase">Showcasing Our Finest Work</p>
+        <div className="relative z-10 px-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">Our Portfolio</h1>
+          <p className="text-secondary text-xs sm:text-sm tracking-[0.3em] uppercase">Showcase of Engineering Excellence</p>
         </div>
       </section>
 
       <SectionWrapper bg="bg-primary text-white">
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-10 sm:mb-12">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 rounded-full font-bold text-[10px] sm:text-sm uppercase tracking-wider transition-all duration-300 ${
                 activeCategory === cat 
                   ? 'btn-liquid-gold shadow-[0_0_20px_rgba(194,149,69,0.3)]' 
                   : 'btn-liquid text-gray-400 hover:text-white'
@@ -67,15 +67,15 @@ export default function Projects() {
                 transition={{ duration: 0.3 }}
                 onClick={() => setSelectedProject(project)}
               >
-                <div className="glass-liquid p-2 rounded-3xl shadow-xl h-80 group cursor-pointer relative overflow-hidden transition-all duration-500 hover:shadow-[0_10px_40px_rgba(194,149,69,0.3)] hover:-translate-y-2">
+                <div className="glass-liquid p-2 rounded-3xl shadow-xl h-72 sm:h-80 group cursor-pointer relative overflow-hidden transition-all duration-500 hover:shadow-[0_10px_40px_rgba(194,149,69,0.3)] hover:-translate-y-2">
                   <div className="w-full h-full rounded-2xl overflow-hidden relative">
                     <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
-                    <div className="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="text-secondary text-sm font-semibold tracking-wider uppercase mb-2 block drop-shadow-md">
+                    <div className="absolute bottom-0 left-0 p-6 sm:p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <span className="text-secondary text-[10px] sm:text-sm font-semibold tracking-wider uppercase mb-1 sm:mb-2 block drop-shadow-md">
                         {project.category}
                       </span>
-                      <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-md">{project.title}</h3>
+                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 drop-shadow-md">{project.title}</h3>
                       <div className="w-0 h-0.5 bg-secondary group-hover:w-16 transition-all duration-500"></div>
                     </div>
                   </div>
@@ -100,7 +100,7 @@ export default function Projects() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-5xl glass-dark-liquid rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] border border-white/20"
+              className="relative w-full max-w-5xl glass-dark-liquid rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[95vh] sm:max-h-[90vh] border border-white/20"
             >
               {/* Close Button */}
               <button 

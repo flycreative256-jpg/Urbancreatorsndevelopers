@@ -72,24 +72,24 @@ export default function About() {
   return (
     <div className="w-full">
       {/* Page Header */}
-      <section className="relative pt-40 pb-24 bg-primary text-center">
+      <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 bg-primary text-center">
         <div className="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1541881454522-8d76d4941913?auto=format&fit=crop&w=2000&q=80" alt="Construction" className="w-full h-full object-cover opacity-10" />
         </div>
-        <div className="relative z-10">
-          <h1 className="text-5xl font-bold text-white mb-4">About Us</h1>
-          <p className="text-secondary tracking-wider uppercase">Building Legacies Since Inception</p>
+        <div className="relative z-10 px-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">About Us</h1>
+          <p className="text-secondary text-xs sm:text-sm tracking-[0.3em] uppercase">Building Legacies Since Inception</p>
         </div>
       </section>
 
       <SectionWrapper bg="bg-background">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl text-primary font-bold mb-6">Our Mission & Vision</h2>
-          <div className="w-24 h-1 bg-secondary mx-auto mb-8"></div>
-          <p className="text-lg text-gray-600 leading-relaxed mb-6">
+        <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-16">
+          <h2 className="text-3xl md:text-4xl text-primary font-bold mb-4 sm:mb-6">Our Mission & Vision</h2>
+          <div className="w-20 h-1 bg-secondary mx-auto mb-6 sm:mb-8"></div>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6">
             At Urban Creators & Developers, our mission is to deliver unparalleled quality in construction and infrastructure development. We believe in building not just structures, but long-lasting relationships with our clients based on trust, transparency, and engineering excellence.
           </p>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
             Our vision is to be the most trusted and premium luxury construction brand, known for integrating modern technology, sustainable practices, and aesthetic brilliance into every project we undertake.
           </p>
         </div>
@@ -97,13 +97,13 @@ export default function About() {
 
       {/* Founders Section */}
       <SectionWrapper bg="bg-primary">
-        <div className="text-center mb-16">
-          <span className="text-secondary font-semibold tracking-wider uppercase text-sm">Leadership</span>
-          <h2 className="text-4xl text-white mt-2 mb-6">Meet Our Founders</h2>
-          <div className="w-24 h-1 bg-secondary mx-auto"></div>
+        <div className="text-center mb-12 sm:mb-16">
+          <span className="text-secondary font-semibold tracking-wider uppercase text-xs sm:text-sm">Leadership</span>
+          <h2 className="text-3xl sm:text-4xl text-white mt-2 mb-4 sm:mb-6">Meet Our Founders</h2>
+          <div className="w-20 h-1 bg-secondary mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto px-4 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto px-4 py-6 sm:py-10">
           {founders.map((founder, index) => (
             <motion.div
               key={index}
@@ -111,7 +111,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative group h-[580px] w-full rounded-[3.5rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-white/10 cursor-pointer"
+              className="relative group h-[500px] sm:h-[580px] w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-white/10 cursor-pointer"
             >
               {/* Image Layer */}
               <div className="absolute inset-0 z-0">

@@ -15,10 +15,10 @@ const services = [
 export default function ServicesPreview() {
   return (
     <SectionWrapper id="services" bg="bg-primary text-white">
-      <div className="text-center mb-16">
-        <span className="text-secondary font-semibold tracking-wider uppercase text-sm">What We Do</span>
-        <h2 className="text-4xl md:text-5xl text-white mt-2 mb-6">Our Premium Services</h2>
-        <div className="w-24 h-1 bg-secondary mx-auto"></div>
+      <div className="text-center mb-12 sm:mb-16">
+        <span className="text-secondary font-semibold tracking-wider uppercase text-xs sm:text-sm">What We Do</span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl text-white mt-2 mb-4 sm:mb-6 font-bold leading-tight">Our Premium Services</h2>
+        <div className="w-20 h-1 bg-secondary mx-auto"></div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -39,12 +39,12 @@ export default function ServicesPreview() {
                 <Icon size={28} />
               </div>
               
-              <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-              <p className="text-gray-300 leading-relaxed mb-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 leading-tight">{service.title}</h3>
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
                 {service.desc}
               </p>
               
-              <Link to="/services" className="inline-flex items-center text-sm font-bold text-white group-hover:text-secondary transition-colors">
+              <Link to="/services" className="inline-flex items-center text-[10px] sm:text-xs font-black tracking-widest text-white group-hover:text-secondary transition-colors uppercase">
                 LEARN MORE <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </motion.div>

@@ -58,7 +58,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12 mt-12 lg:mt-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center justify-between gap-12 mt-4 sm:mt-8 lg:mt-20">
         
         {/* Left Side: Dynamic Text */}
         <div className="w-full lg:w-3/5">
@@ -80,7 +80,7 @@ export default function Hero() {
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] text-white leading-[1.1] font-heading font-bold mb-8 drop-shadow-2xl">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] text-white leading-[1.1] font-heading font-bold mb-6 sm:mb-8 drop-shadow-2xl">
                 {slides[currentSlide].title.split(' ').map((word, i) => {
                   const isGold = ['luxury', 'excellence', 'premium'].includes(word.toLowerCase());
                   return (
@@ -90,23 +90,23 @@ export default function Hero() {
                   );
                 })}
               </h1>
-              <p className="text-gray-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-12 border-l-4 border-secondary pl-6 bg-gradient-to-r from-primary/40 to-transparent py-2">
+              <p className="text-gray-300 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-8 sm:mb-12 border-l-4 border-secondary pl-5 sm:pl-6 bg-gradient-to-r from-primary/40 to-transparent py-2">
                 {slides[currentSlide].subtitle}
               </p>
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <Link
               to="/contact"
-              className="px-8 py-4 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl text-center shadow-[0_0_40px_rgba(194,149,69,0.4)] hover:shadow-[0_0_60px_rgba(194,149,69,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 group"
+              className="w-full sm:w-auto px-8 py-4 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl text-center shadow-[0_0_40px_rgba(194,149,69,0.4)] hover:shadow-[0_0_60px_rgba(194,149,69,0.6)] active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 group"
             >
               Get Free Quote
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/projects"
-              className="px-8 py-4 btn-liquid text-white font-bold uppercase tracking-wider rounded-xl text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="w-full sm:w-auto px-8 py-4 btn-liquid text-white font-bold uppercase tracking-wider rounded-xl text-center shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300"
             >
               Our Portfolio
             </Link>
