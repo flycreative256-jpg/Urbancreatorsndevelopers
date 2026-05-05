@@ -97,26 +97,31 @@ export default function Hero() {
           </AnimatePresence>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-            <Link
-              to="/contact"
-              className="w-full sm:w-auto px-8 py-4 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl text-center shadow-[0_0_40px_rgba(194,149,69,0.4)] hover:shadow-[0_0_60px_rgba(194,149,69,0.6)] active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 group"
-            >
-              Get Free Quote
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              to="/projects"
-              className="w-full sm:w-auto px-8 py-4 btn-liquid text-white font-bold uppercase tracking-wider rounded-xl text-center shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300"
-            >
-              Our Portfolio
-            </Link>
+            <motion.div whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+              <Link
+                to="/contact"
+                className="w-full px-8 py-4 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl text-center shadow-[0_0_40px_rgba(194,149,69,0.4)] hover:shadow-[0_0_60px_rgba(194,149,69,0.6)] transition-all duration-300 flex items-center justify-center gap-3 group"
+              >
+                Get Free Quote
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+            <motion.div whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+              <Link
+                to="/projects"
+                className="w-full px-8 py-4 btn-liquid text-white font-bold uppercase tracking-wider rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Our Portfolio
+              </Link>
+            </motion.div>
           </div>
 
           {/* Slide Indicators */}
           <div className="flex gap-3 mt-16">
             {slides.map((_, i) => (
-              <button
+              <motion.button
                 key={i}
+                whileTap={{ scale: 0.8 }}
                 onClick={() => setCurrentSlide(i)}
                 className={`transition-all duration-500 rounded-full h-1.5 ${currentSlide === i ? 'w-12 bg-secondary shadow-[0_0_10px_#C29545]' : 'w-4 bg-white/30 hover:bg-white/50'}`}
               />
@@ -157,6 +162,7 @@ export default function Hero() {
 
       {/* Fixed Arrow Scroll Button */}
       <motion.button
+        whileTap={{ scale: 0.9 }}
         onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 w-14 h-14 rounded-full glass-liquid flex items-center justify-center text-secondary hover:text-primary hover:bg-secondary border border-white/30 transition-all shadow-[0_0_30px_rgba(194,149,69,0.4)] group cursor-pointer"
         animate={{ y: [0, 10, 0] }}

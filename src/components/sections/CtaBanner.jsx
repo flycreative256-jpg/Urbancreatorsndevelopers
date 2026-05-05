@@ -24,15 +24,15 @@ export default function CtaBanner() {
           </p>
         </div>
         
-        <div className="shrink-0 w-full lg:w-auto">
+        <motion.div whileTap={{ scale: 0.95 }} className="shrink-0 w-full lg:w-auto">
           <Link
             to="/contact"
-            className="w-full lg:w-auto px-10 py-5 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl flex items-center justify-center gap-3 active:scale-95 transition-all shadow-2xl"
+            className="w-full lg:w-auto px-10 py-5 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl flex items-center justify-center gap-3 transition-all shadow-2xl"
           >
             Get Free Quote
             <ArrowRight size={20} />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

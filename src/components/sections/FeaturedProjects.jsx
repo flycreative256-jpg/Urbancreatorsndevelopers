@@ -43,9 +43,11 @@ export default function FeaturedProjects() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl text-white mt-2 mb-4 sm:mb-6 font-bold leading-tight">Featured Projects</h2>
           <div className="w-20 h-1 bg-secondary"></div>
         </div>
-        <Link to="/projects" className="inline-flex items-center gap-2 font-bold text-secondary hover:text-white transition-colors group text-sm sm:text-base">
-          View All Projects <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-        </Link>
+        <motion.div whileTap={{ scale: 0.98 }}>
+          <Link to="/projects" className="inline-flex items-center gap-2 font-bold text-secondary hover:text-white transition-colors group text-sm sm:text-base">
+            View All Projects <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 lg:h-[600px]">
@@ -54,6 +56,7 @@ export default function FeaturedProjects() {
             key={project.id}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            whileTap={{ scale: 0.98 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className={`relative rounded-xl overflow-hidden group cursor-pointer ${project.colSpan} h-[280px] sm:h-[300px] md:h-auto`}

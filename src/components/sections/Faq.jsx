@@ -32,10 +32,11 @@ const FaqItem = ({ faq, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, x: -10 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.8 }}
+      whileTap={{ scale: 0.98 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ delay: index * 0.05, duration: 0.6 }}
       className="group mb-4 sm:mb-8"
     >
       <div

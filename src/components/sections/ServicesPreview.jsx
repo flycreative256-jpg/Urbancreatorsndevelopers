@@ -29,8 +29,9 @@ export default function ServicesPreview() {
               key={service.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileTap={{ scale: 0.95 }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               className="glass-liquid p-8 rounded-2xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-bl-full -z-10 transition-transform duration-500 group-hover:scale-150"></div>

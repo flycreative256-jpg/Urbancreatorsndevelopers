@@ -16,7 +16,7 @@ export default function AboutPreview() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6 }}
             >
               <img 
@@ -28,7 +28,7 @@ export default function AboutPreview() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-8 sm:mt-12"
             >
@@ -44,7 +44,7 @@ export default function AboutPreview() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-dark-liquid p-4 sm:p-6 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/20 text-center min-w-[150px] sm:min-w-[200px]"
           >
@@ -68,13 +68,15 @@ export default function AboutPreview() {
             </p>
           </div>
 
-          <Link
-            to="/about"
-            className="inline-flex items-center gap-2 px-8 py-4 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl transition-all duration-300"
-          >
-            Discover Our Story
-            <ArrowRight size={20} />
-          </Link>
+          <motion.div whileTap={{ scale: 0.95 }} className="inline-block">
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 px-8 py-4 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl transition-all duration-300"
+            >
+              Discover Our Story
+              <ArrowRight size={20} />
+            </Link>
+          </motion.div>
         </div>
       </div>
     </SectionWrapper>
