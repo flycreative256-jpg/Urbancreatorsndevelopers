@@ -30,16 +30,21 @@ const LinkedinIcon = ({ size = 18 }) => (
 
 const FounderCard = ({ founder, index }) => {
   const [isActive, setIsActive] = useState(false);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ 
+        duration: 1, 
+        delay: isMobile ? 0 : index * 0.1, 
+        ease: [0.16, 1, 0.3, 1] 
+      }}
       onClick={() => setIsActive(!isActive)}
       style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
-      className="relative group h-[500px] sm:h-[580px] w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-white/10 cursor-pointer will-change-transform"
+      className="relative group h-[500px] sm:h-[580px] w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-white/10 cursor-pointer will-change-[opacity,transform]"
     >
       {/* Image Layer */}
       <div className="absolute inset-0 z-0">

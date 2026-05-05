@@ -35,6 +35,8 @@ const projects = [
 ];
 
 export default function FeaturedProjects() {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   return (
     <SectionWrapper id="projects" bg="bg-primary border-t border-white/5">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 sm:mb-16 gap-6 text-center md:text-left">
@@ -54,13 +56,17 @@ export default function FeaturedProjects() {
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={isMobile ? { opacity: 1 } : { opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             whileTap={{ scale: 0.98 }}
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ 
+              duration: 0.8, 
+              delay: isMobile ? 0 : index * 0.1, 
+              ease: [0.16, 1, 0.3, 1] 
+            }}
             style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
-            className={`relative rounded-xl overflow-hidden group cursor-pointer ${project.colSpan} h-[280px] sm:h-[300px] md:h-auto will-change-transform`}
+            className={`relative rounded-xl overflow-hidden group cursor-pointer ${project.colSpan} h-[280px] sm:h-[300px] md:h-auto will-change-[opacity,transform]`}
           >
             <img 
               src={project.image} 
