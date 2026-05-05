@@ -31,11 +31,11 @@ export default function Navbar() {
       className={cn(
         'fixed z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] glass-dark-liquid border-white/10 shadow-2xl',
         isScrolled 
-          ? 'top-0 left-0 right-0 rounded-b-2xl border-b py-4 md:py-5' 
-          : 'top-4 md:top-6 left-4 right-4 md:left-[max(1.5rem,calc(50%-45rem))] md:right-[max(1.5rem,calc(50%-45rem))] rounded-3xl border py-4 md:py-5'
+          ? 'top-0 left-0 right-0 rounded-b-3xl border-b py-5 md:py-6' 
+          : 'top-4 md:top-8 left-4 right-4 md:left-[max(1.5rem,calc(50%-48rem))] md:right-[max(1.5rem,calc(50%-48rem))] rounded-[2.5rem] border py-6 md:py-8'
       )}
     >
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="max-w-[1600px] mx-auto px-8 sm:px-10 lg:px-14">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center">
@@ -44,13 +44,13 @@ export default function Navbar() {
               alt="Urban Creators & Developers" 
               className={cn(
                 "w-auto object-contain transition-all duration-500 drop-shadow-lg",
-                isScrolled ? "h-10 md:h-12" : "h-12 md:h-16"
+                isScrolled ? "h-12 md:h-14" : "h-16 md:h-22"
               )} 
             />
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-10">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-12">
             {navLinks.map((navItem) => (
               <Link
                 key={navItem.name}
