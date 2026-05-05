@@ -110,7 +110,7 @@ export default function Faq() {
         <img
           src="/faq_bg.png"
           alt="Construction Background"
-          className="w-full h-full object-cover opacity-30 blur-2xl scale-110 grayscale brightness-50"
+          className="w-full h-full object-cover opacity-50 blur-lg scale-105 brightness-75"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/80 to-primary"></div>
       </div>
