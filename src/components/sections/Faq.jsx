@@ -111,7 +111,7 @@ export default function Faq() {
       {/* Cinematic Background Layer - Dark Mode Integration */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={constructionBg} 
+          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2000&q=80" 
           alt="Construction Background" 
           className="w-full h-full object-cover opacity-20 grayscale brightness-50"
         />
