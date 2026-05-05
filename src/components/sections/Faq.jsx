@@ -37,7 +37,8 @@ const FaqItem = ({ faq, index }) => {
       whileTap={{ scale: 0.98 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ delay: index * 0.05, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="group mb-4 sm:mb-8"
+      style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+      className="group mb-4 sm:mb-8 will-change-transform"
     >
       <div
         className={`relative overflow-hidden transition-all duration-700 rounded-[1.5rem] sm:rounded-[2.5rem] border backdrop-blur-2xl ${isOpen

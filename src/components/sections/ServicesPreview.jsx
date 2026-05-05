@@ -32,7 +32,8 @@ export default function ServicesPreview() {
               whileTap={{ scale: 0.95 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="glass-liquid p-8 rounded-2xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden"
+              style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+              className="glass-liquid p-8 rounded-2xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden will-change-transform"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-bl-full -z-10 transition-transform duration-500 group-hover:scale-150"></div>
               

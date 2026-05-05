@@ -38,7 +38,8 @@ const FounderCard = ({ founder, index }) => {
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       onClick={() => setIsActive(!isActive)}
-      className="relative group h-[500px] sm:h-[580px] w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-white/10 cursor-pointer"
+      style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+      className="relative group h-[500px] sm:h-[580px] w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-white/10 cursor-pointer will-change-transform"
     >
       {/* Image Layer */}
       <div className="absolute inset-0 z-0">
