@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import SectionWrapper from '../ui/SectionWrapper';
 
@@ -35,6 +35,8 @@ const projects = [
 ];
 
 export default function FeaturedProjects() {
+  const navigate = useNavigate();
+
   return (
     <SectionWrapper id="projects" bg="bg-primary border-t border-white/5">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 sm:mb-16 gap-6 text-center md:text-left">
@@ -54,6 +56,7 @@ export default function FeaturedProjects() {
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
+            onClick={() => navigate('/projects')}
             initial={window.innerWidth < 768 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
             whileInView={window.innerWidth < 768 ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
             whileTap={{ scale: 0.98 }}
