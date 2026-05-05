@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
@@ -106,27 +106,50 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
               className="md:hidden absolute top-[calc(100%+0.5rem)] left-4 right-4 bg-primary border border-white/10 rounded-[2rem] shadow-[0_30px_80px_rgba(0,0,0,0.8)] overflow-hidden z-[60]"
             >
-              <div className="px-6 py-8 flex flex-col gap-2">
-                {navLinks.map((navItem) => (
-                  <Link
-                    key={navItem.name}
-                    to={navItem.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={cn(
-                      'block text-base font-bold uppercase tracking-[0.2em] transition-all duration-300 py-3.5 border-b border-white/5 active:bg-white/5 px-2 rounded-lg',
-                      location.pathname === navItem.path ? 'text-secondary' : 'text-gray-300 hover:text-white'
-                    )}
-                  >
-                    {navItem.name}
-                  </Link>
-                ))}
-                <Link
-                  to="/estimate"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-center px-6 py-4 btn-liquid-gold text-primary font-bold rounded-2xl mt-4 tracking-[0.2em] uppercase text-xs shadow-2xl active:scale-95 transition-transform"
+              <div className="px-6 py-8 flex flex-col gap-1">
+                {navLinks.map((navItem, index) => {
+                  const isActive = location.pathname === navItem.path;
+                  return (
+                    <motion.div
+                      key={navItem.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + index * 0.05, duration: 0.4 }}
+                    >
+                      <Link
+                        to={navItem.path}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={cn(
+                          'group flex items-center justify-between text-lg sm:text-xl font-bold uppercase tracking-[0.2em] transition-all duration-300 py-4 border-b border-white/5 active:bg-white/5 px-3 rounded-xl',
+                          isActive ? 'text-secondary' : 'text-gray-300 hover:text-white'
+                        )}
+                      >
+                        {navItem.name}
+                        <ChevronRight 
+                          className={cn(
+                            "transition-transform duration-300", 
+                            isActive ? "text-secondary translate-x-0 opacity-100" : "text-white/20 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-hover:text-secondary"
+                          )} 
+                          size={24} 
+                        />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
+                  className="mt-6"
                 >
-                  Free Estimate
-                </Link>
+                  <Link
+                    to="/estimate"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex justify-center w-full px-6 py-5 btn-liquid-gold text-primary font-bold rounded-2xl tracking-[0.2em] uppercase text-sm shadow-2xl active:scale-95 transition-transform"
+                  >
+                    Free Estimate
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           </>
