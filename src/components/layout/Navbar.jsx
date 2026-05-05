@@ -56,7 +56,7 @@ export default function Navbar() {
                 key={navItem.name}
                 to={navItem.path}
                 className={cn(
-                  'text-[10px] lg:text-xs font-semibold uppercase tracking-[0.1em] transition-all duration-300 relative group active:scale-95',
+                  'text-xs lg:text-sm font-bold uppercase tracking-[0.15em] transition-all duration-300 relative group active:scale-95',
                   location.pathname === navItem.path 
                     ? 'text-secondary drop-shadow-[0_0_8px_rgba(194,149,69,0.5)]' 
                     : 'text-gray-200 hover:text-white'
@@ -71,7 +71,7 @@ export default function Navbar() {
             ))}
             <Link
               to="/estimate"
-              className="px-6 py-2.5 btn-liquid-gold text-primary font-bold rounded-xl uppercase text-[10px] tracking-widest shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap active:scale-95"
+              className="px-8 py-3.5 btn-liquid-gold text-primary font-bold rounded-xl uppercase text-xs lg:text-sm tracking-[0.15em] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap active:scale-95"
             >
               Free Estimate
             </Link>
