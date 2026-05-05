@@ -106,14 +106,14 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
               className="md:hidden absolute top-[calc(100%+0.5rem)] left-0 right-0 bg-[#0a0a0a]/95 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden z-[60]"
             >
-              <div className="px-6 py-10 flex flex-col gap-6">
+              <div className="px-6 py-6 flex flex-col gap-2">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     to={link.path}
                     onClick={() => setMobileMenuOpen(false)}
                     className={cn(
-                      'block text-lg font-bold uppercase tracking-[0.2em] transition-all duration-300 py-3 border-b border-white/5',
+                      'block text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 py-3.5 border-b border-white/5',
                       location.pathname === link.path ? 'text-secondary' : 'text-gray-300 hover:text-white'
                     )}
                   >
@@ -123,7 +123,7 @@ export default function Navbar() {
                 <Link
                   to="/estimate"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-center px-6 py-5 btn-liquid-gold text-primary font-bold rounded-2xl mt-4 tracking-[0.3em] uppercase text-sm shadow-2xl active:scale-95 transition-transform"
+                  className="block w-full text-center px-6 py-4 btn-liquid-gold text-primary font-bold rounded-2xl mt-4 tracking-[0.2em] uppercase text-xs shadow-2xl active:scale-95 transition-transform"
                 >
                   Free Estimate
                 </Link>

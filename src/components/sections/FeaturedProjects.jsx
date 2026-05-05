@@ -37,18 +37,18 @@ const projects = [
 export default function FeaturedProjects() {
   return (
     <SectionWrapper id="projects" bg="bg-primary border-t border-white/5">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-        <div>
-          <span className="text-secondary font-semibold tracking-wider uppercase text-sm">Portfolio</span>
-          <h2 className="text-4xl md:text-5xl text-white mt-2 mb-6">Featured Projects</h2>
-          <div className="w-24 h-1 bg-secondary"></div>
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 sm:mb-16 gap-6 text-center md:text-left">
+        <div className="flex flex-col items-center md:items-start w-full md:w-auto">
+          <span className="text-secondary font-semibold tracking-wider uppercase text-xs sm:text-sm">Portfolio</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl text-white mt-2 mb-4 sm:mb-6 font-bold leading-tight">Featured Projects</h2>
+          <div className="w-20 h-1 bg-secondary"></div>
         </div>
-        <Link to="/projects" className="inline-flex items-center gap-2 font-bold text-secondary hover:text-white transition-colors group">
-          View All Projects <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+        <Link to="/projects" className="inline-flex items-center gap-2 font-bold text-secondary hover:text-white transition-colors group text-sm sm:text-base">
+          View All Projects <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-auto gap-4 md:h-[600px]">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 lg:h-[600px]">
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
@@ -56,7 +56,7 @@ export default function FeaturedProjects() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`relative rounded-xl overflow-hidden group cursor-pointer ${project.colSpan} h-[300px] md:h-auto`}
+            className={`relative rounded-xl overflow-hidden group cursor-pointer ${project.colSpan} h-[280px] sm:h-[300px] md:h-auto`}
           >
             <img 
               src={project.image} 
@@ -65,11 +65,11 @@ export default function FeaturedProjects() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90"></div>
             
-            <div className="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-              <span className="text-secondary text-sm font-semibold tracking-wider uppercase mb-2 block">
+            <div className="absolute bottom-0 left-0 p-6 sm:p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              <span className="text-secondary text-xs sm:text-sm font-semibold tracking-wider uppercase mb-2 block">
                 {project.category}
               </span>
-              <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{project.title}</h3>
               <div className="w-0 h-0.5 bg-secondary group-hover:w-12 transition-all duration-300"></div>
             </div>
           </motion.div>
