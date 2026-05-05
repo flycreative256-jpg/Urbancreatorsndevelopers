@@ -22,6 +22,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    /* Prevent flickering on mobile during transitions */
+    -webkit-tap-highlight-color: transparent;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
@@ -38,17 +40,43 @@
     @apply bg-gradient-to-r from-[#FDE68A] via-secondary to-[#A16207];
   }
   .glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+    @apply bg-white/70 border border-white/20 shadow-lg;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   .glass-dark {
-    @apply bg-primary/80 backdrop-blur-md border border-white/10 shadow-lg text-white;
+    @apply bg-primary/80 border border-white/10 shadow-lg text-white;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   .glass-liquid {
-    @apply bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+    @apply bg-white/10 border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   .glass-dark-liquid {
-    @apply bg-primary/60 backdrop-blur-2xl border border-white/10 shadow-2xl;
+    @apply bg-primary/60 border border-white/10 shadow-2xl;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
+  
+  /* Reduced blur for mobile to prevent flickering/blinking */
+  @media (max-width: 768px) {
+    .glass, .glass-dark, .glass-liquid, .glass-dark-liquid {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transform: none; /* Let motion handle transform */
+    }
+  }
+
   .btn-liquid {
     @apply bg-white/10 hover:bg-white/20 border border-white/30 backdrop-blur-xl transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_25px_rgba(255,255,255,0.15)] hover:-translate-y-0.5;
   }
