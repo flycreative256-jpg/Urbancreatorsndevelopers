@@ -31,8 +31,8 @@ export default function Navbar() {
       className={cn(
         'fixed z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] glass-dark-liquid border-white/10 shadow-2xl',
         isScrolled 
-          ? 'top-0 left-0 right-0 rounded-b-[2.5rem] border-b py-5 md:py-6' 
-          : 'top-4 md:top-6 left-4 right-4 md:left-[max(1.5rem,calc(50%-45rem))] md:right-[max(1.5rem,calc(50%-45rem))] rounded-[2.5rem] border py-4 md:py-5'
+          ? 'top-0 left-0 right-0 rounded-b-2xl border-b py-5 md:py-6' 
+          : 'top-4 md:top-6 left-4 right-4 md:left-[max(1.5rem,calc(50%-45rem))] md:right-[max(1.5rem,calc(50%-45rem))] rounded-3xl border py-4 md:py-5'
       )}
     >
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12">
@@ -98,15 +98,15 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md z-[-1] md:hidden"
+              className="fixed inset-0 bg-primary/90 backdrop-blur-xl z-[-1] md:hidden"
             />
             <motion.div 
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              className="md:hidden absolute top-[calc(100%+0.5rem)] left-0 right-0 bg-primary/95 backdrop-blur-2xl rounded-[2.5rem] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden z-[60]"
+              className="md:hidden absolute top-[calc(100%+0.5rem)] left-4 right-4 bg-primary border border-white/10 rounded-[2rem] shadow-[0_30px_80px_rgba(0,0,0,0.8)] overflow-hidden z-[60]"
             >
-              <div className="px-6 py-6 flex flex-col gap-2">
+              <div className="px-6 py-8 flex flex-col gap-2">
                 {navLinks.map((navItem) => (
                   <Link
                     key={navItem.name}
