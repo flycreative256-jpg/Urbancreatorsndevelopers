@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import SectionWrapper from '../ui/SectionWrapper';
 
+import faqBg from '../../assets/faq-construction-new.png';
+
 const faqs = [
   {
     question: "What services does Urban Creators & Developers provide?",
@@ -109,8 +111,17 @@ export default function Faq() {
     <div className="relative overflow-hidden bg-primary">
       {/* Cinematic Background Layer - Dark Mode Integration */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/80 to-primary"></div>
+        <motion.img 
+          initial={{ scale: 1.1 }}
+          whileInView={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          src={faqBg} 
+          alt="Construction Background" 
+          className="w-full h-full object-cover opacity-20 grayscale-[0.3] contrast-[1.1] blur-[2px]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary"></div>
       </div>
+
 
       <SectionWrapper id="faq" bg="bg-transparent" className="relative z-10">
         <div className="max-w-5xl mx-auto px-4">
