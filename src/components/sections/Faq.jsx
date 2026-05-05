@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import SectionWrapper from '../ui/SectionWrapper';
-
-import faqBg from '../../assets/faq-construction-new.png';
+import constructionBg from '../../assets/construction-faq-bg.png';
 
 const faqs = [
   {
@@ -108,20 +107,16 @@ const FaqItem = ({ faq, index }) => {
 
 export default function Faq() {
   return (
-    <div className="relative overflow-hidden bg-primary">
+    <div className="relative overflow-hidden bg-primary py-12 sm:py-24">
       {/* Cinematic Background Layer - Dark Mode Integration */}
       <div className="absolute inset-0 z-0">
-        <motion.img 
-          initial={{ scale: 1.1 }}
-          whileInView={{ scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          src={faqBg} 
+        <img 
+          src={constructionBg} 
           alt="Construction Background" 
-          className="w-full h-full object-cover opacity-20 grayscale-[0.3] contrast-[1.1] blur-[2px]"
+          className="w-full h-full object-cover opacity-20 grayscale brightness-50"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary"></div>
       </div>
-
 
       <SectionWrapper id="faq" bg="bg-transparent" className="relative z-10">
         <div className="max-w-5xl mx-auto px-4">
