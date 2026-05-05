@@ -1,7 +1,9 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import SectionWrapper from '../components/ui/SectionWrapper';
 import CtaBanner from '../components/sections/CtaBanner';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 // Custom SVG Brand Icons
 const InstagramIcon = ({ size = 18 }) => (
@@ -26,7 +28,114 @@ const LinkedinIcon = ({ size = 18 }) => (
   </svg>
 );
 
-import { usePageTitle } from '../hooks/usePageTitle';
+const FounderCard = ({ founder, index }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      onClick={() => setIsActive(!isActive)}
+      className="relative group h-[500px] sm:h-[580px] w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-white/10 cursor-pointer"
+    >
+      {/* Image Layer */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={founder.image}
+          alt={founder.name}
+          className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent opacity-90 transition-opacity duration-700"></div>
+      </div>
+
+      {/* Content Overlay */}
+      <div className={`absolute inset-x-5 bottom-5 z-10 transition-all duration-700 ${isActive ? '-translate-y-4' : 'group-hover:-translate-y-2'}`}>
+        <div className="glass-dark-liquid p-8 rounded-[2.5rem] border border-white/20 backdrop-blur-3xl shadow-2xl min-h-[180px] flex flex-col items-center justify-center text-center">
+          <div className="w-full">
+            <span className="text-secondary font-black text-[10px] tracking-[0.3em] uppercase mb-2 block drop-shadow-sm">
+              {founder.role}
+            </span>
+            <h3 className="text-3xl font-extrabold text-white leading-tight mb-3">
+              {founder.name}
+            </h3>
+            {founder.degree && (
+              <div className="flex justify-center mb-1">
+                <span className="text-[10px] font-bold bg-white/10 text-white/70 border border-white/10 px-4 py-1 rounded-full uppercase tracking-widest backdrop-blur-md">
+                  {founder.degree}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Socials Section - Click to Reveal on Mobile, Hover on Desktop */}
+          <motion.div 
+            initial={false}
+            animate={{ 
+              height: isActive ? 'auto' : 0,
+              opacity: isActive ? 1 : 0,
+              marginTop: isActive ? 24 : 0
+            }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden w-full lg:hidden"
+          >
+            <div className="pt-6 border-t border-white/10 flex justify-center gap-4">
+              {[
+                { icon: <LinkedinIcon size={18} />, link: founder.socials.linkedin, color: 'hover:bg-[#0A66C2]' },
+                { icon: <InstagramIcon size={18} />, link: founder.socials.instagram, color: 'hover:bg-[#E4405F]' },
+                { icon: <FacebookIcon size={18} />, link: founder.socials.facebook, color: 'hover:bg-[#1877F2]' },
+                { icon: <MessageCircle size={18} />, link: founder.socials.whatsapp, color: 'hover:bg-[#25D366]' }
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className={`w-10 h-10 rounded-full bg-white/5 ${social.color} flex items-center justify-center text-white/60 hover:text-white transition-all hover:scale-110 border border-white/10 shadow-lg`}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Desktop Reveal (Hover) */}
+          <div className="hidden lg:block w-full">
+            <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+              <div className="overflow-hidden">
+                <div className="pt-6 mt-6 border-t border-white/10 flex justify-center gap-4">
+                  {[
+                    { icon: <LinkedinIcon size={18} />, link: founder.socials.linkedin, color: 'hover:bg-[#0A66C2]' },
+                    { icon: <InstagramIcon size={18} />, link: founder.socials.instagram, color: 'hover:bg-[#E4405F]' },
+                    { icon: <FacebookIcon size={18} />, link: founder.socials.facebook, color: 'hover:bg-[#1877F2]' },
+                    { icon: <MessageCircle size={18} />, link: founder.socials.whatsapp, color: 'hover:bg-[#25D366]' }
+                  ].map((social, i) => (
+                    <a
+                      key={i}
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-10 h-10 rounded-full bg-white/5 ${social.color} flex items-center justify-center text-white/60 hover:text-white transition-all hover:scale-110 border border-white/10 shadow-lg`}
+                    >
+                      {social.icon}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Action Indicator */}
+      <div className={`absolute top-8 right-8 w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-2xl transition-all duration-500 ${isActive ? 'rotate-45 scale-110' : 'opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100'}`}>
+        <ArrowRight size={22} />
+      </div>
+    </motion.div>
+  );
+};
 
 export default function About() {
   usePageTitle('Our Legacy & Leadership');
@@ -105,75 +214,7 @@ export default function About() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto px-4 py-6 sm:py-10">
           {founders.map((founder, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative group h-[500px] sm:h-[580px] w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.4)] border border-white/10 cursor-pointer"
-            >
-              {/* Image Layer */}
-              <div className="absolute inset-0 z-0">
-                <img
-                  src={founder.image}
-                  alt={founder.name}
-                  className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-700"></div>
-              </div>
-
-              {/* Stabilized Content Overlay */}
-              <div className="absolute inset-x-5 bottom-5 z-10 transition-all duration-500 group-hover:-translate-y-2">
-                <div className="glass-dark-liquid p-8 rounded-[2.5rem] border border-white/20 backdrop-blur-3xl shadow-2xl min-h-[200px] flex flex-col items-center justify-center text-center">
-                  {/* Fixed Text Section */}
-                  <div className="w-full">
-                    <span className="text-secondary font-black text-[10px] tracking-[0.3em] uppercase mb-2 block drop-shadow-sm">
-                      {founder.role}
-                    </span>
-                    <h3 className="text-3xl font-extrabold text-white leading-tight mb-3">
-                      {founder.name}
-                    </h3>
-                    {founder.degree && (
-                      <div className="flex justify-center mb-1">
-                        <span className="text-[10px] font-bold bg-white/10 text-white/70 border border-white/10 px-4 py-1 rounded-full uppercase tracking-widest backdrop-blur-md">
-                          {founder.degree}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Socials - Always visible on mobile, reveal on hover for desktop */}
-                  <div className="grid grid-rows-[1fr] lg:grid-rows-[0fr] lg:group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out w-full">
-                    <div className="overflow-hidden">
-                      <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-white/10 flex justify-center gap-3 sm:gap-4">
-                        {[
-                          { icon: <LinkedinIcon size={18} />, link: founder.socials.linkedin, color: 'hover:bg-[#0A66C2]' },
-                          { icon: <InstagramIcon size={18} />, link: founder.socials.instagram, color: 'hover:bg-[#E4405F]' },
-                          { icon: <FacebookIcon size={18} />, link: founder.socials.facebook, color: 'hover:bg-[#1877F2]' },
-                          { icon: <MessageCircle size={18} />, link: founder.socials.whatsapp, color: 'hover:bg-[#25D366]' }
-                        ].map((social, i) => (
-                          <a
-                            key={i}
-                            href={social.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`w-10 h-10 rounded-full bg-white/5 ${social.color} flex items-center justify-center text-white/60 hover:text-white transition-all hover:scale-110 border border-white/10 shadow-lg`}
-                          >
-                            {social.icon}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Indicator */}
-              <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100 rotate-12 group-hover:rotate-0">
-                <ArrowRight size={22} />
-              </div>
-            </motion.div>
+            <FounderCard key={index} founder={founder} index={index} />
           ))}
         </div>
       </SectionWrapper>
