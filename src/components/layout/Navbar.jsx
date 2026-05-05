@@ -104,7 +104,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              className="md:hidden absolute top-[calc(100%+0.5rem)] left-0 right-0 bg-[#0a0a0a]/95 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden z-[60]"
+              className="md:hidden absolute top-[calc(100%+0.5rem)] left-0 right-0 glass-dark-liquid rounded-3xl overflow-hidden z-[60]"
             >
               <div className="px-6 py-6 flex flex-col gap-2">
                 {navLinks.map((navItem) => (
