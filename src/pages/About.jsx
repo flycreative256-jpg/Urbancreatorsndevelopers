@@ -188,7 +188,7 @@ export default function About() {
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            src="https://images.unsplash.com/photo-1541881454522-8d76d4941913?auto=format&fit=crop&w=2000&q=80" 
+            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop" 
             alt="Construction Background" 
             className="w-full h-full object-cover opacity-30 object-[center_top] sm:object-center" 
           />
