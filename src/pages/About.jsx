@@ -182,13 +182,38 @@ export default function About() {
   return (
     <div className="w-full">
       {/* Page Header */}
-      <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 bg-primary text-center">
+      <section className="relative pt-32 sm:pt-48 pb-20 sm:pb-32 bg-primary text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1541881454522-8d76d4941913?auto=format&fit=crop&w=2000&q=80" alt="Construction" className="w-full h-full object-cover opacity-10" />
+          <motion.img 
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            src="https://images.unsplash.com/photo-1541881454522-8d76d4941913?auto=format&fit=crop&w=2000&q=80" 
+            alt="Construction Background" 
+            className="w-full h-full object-cover opacity-30 object-[center_top] sm:object-center" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/60 to-primary"></div>
+          {/* Subtle grid pattern overlay */}
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         </div>
-        <div className="relative z-10 px-6">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">About Us</h1>
-          <p className="text-secondary text-xs sm:text-sm tracking-[0.3em] uppercase">Building Legacies Since Inception</p>
+        
+        <div className="relative z-10 px-6 max-w-4xl mx-auto flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            className="flex flex-col items-center"
+          >
+            <span className="inline-block py-1.5 px-4 rounded-full bg-white/5 border border-white/10 text-secondary text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-6 backdrop-blur-md shadow-xl">
+              Building Legacies Since Inception
+            </span>
+            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white mb-6 tracking-tight leading-[1.1] drop-shadow-2xl">
+              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-yellow-200">Us</span>
+            </h1>
+            <p className="text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
+              We don't just construct buildings; we craft landmarks. Discover the passion, expertise, and leadership that drive Urban Creators & Developers.
+            </p>
+          </motion.div>
         </div>
       </section>
 
