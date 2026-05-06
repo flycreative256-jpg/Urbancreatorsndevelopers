@@ -83,4 +83,7 @@
   .btn-liquid-gold {
     @apply bg-secondary/80 hover:bg-secondary backdrop-blur-xl border border-white/40 transition-all duration-300 shadow-[0_4px_15px_rgba(194,149,69,0.3)] hover:shadow-[0_4px_25px_rgba(194,149,69,0.5)] hover:-translate-y-0.5;
   }
+  .hide-default-cursor, .hide-default-cursor * {
+    cursor: none !important;
+  }
 }
