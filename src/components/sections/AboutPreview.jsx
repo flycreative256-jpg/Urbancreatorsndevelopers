@@ -20,7 +20,7 @@ export default function AboutPreview() {
               transition={{ duration: 0.6 }}
             >
               <img 
-                src="/luxury_construction_site.png" 
+                src="https://images.unsplash.com/photo-1541881454522-8d76d4941913?auto=format&fit=crop&w=800&q=80" 
                 alt="Construction Site" 
                 className="rounded-2xl shadow-xl w-full h-[220px] sm:h-[300px] object-cover"
               />
@@ -33,7 +33,7 @@ export default function AboutPreview() {
               className="mt-8 sm:mt-12"
             >
               <img 
-                src="/luxury_home_exterior.png" 
+                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" 
                 alt="Luxury Home Exterior" 
                 className="rounded-2xl shadow-xl w-full h-[220px] sm:h-[300px] object-cover"
               />

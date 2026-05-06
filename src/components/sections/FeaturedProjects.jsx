@@ -8,28 +8,28 @@ const projects = [
     id: 1,
     title: 'The Royal Estate',
     category: 'Luxury Villa',
-    image: '/projects/1.png',
+    image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80',
     colSpan: 'col-span-1 md:col-span-2 row-span-2'
   },
   {
     id: 2,
     title: 'Skyline Heights',
     category: 'Commercial',
-    image: '/projects/2.png',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
     colSpan: 'col-span-1 row-span-1'
   },
   {
     id: 3,
     title: 'Modern Haven',
     category: 'Residential',
-    image: '/projects/3.png',
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
     colSpan: 'col-span-1 row-span-1'
   },
   {
     id: 4,
     title: 'Oasis Smart Home',
     category: 'Turnkey Project',
-    image: '/projects/4.png',
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
     colSpan: 'col-span-1 md:col-span-2 row-span-1'
   }
 ];

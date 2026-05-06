@@ -6,13 +6,13 @@ const packages = [
   {
     id: 'basic',
     name: 'Basic Construction',
-    target: 'Ideal for small homes',
-    price: 'Standard',
+    target: 'Ideal for 1-2 BHK Homes',
+    price: '₹1,500/sq.ft',
     features: [
-      'Standard quality materials',
-      'Budget-friendly planning',
-      'Basic electrical & plumbing',
-      'Standard flooring options',
+      'Standard quality materials (ISI mark)',
+      'Basic Vastu compliant planning',
+      'Standard electrical & plumbing',
+      'Vitrified tile flooring',
       '6 months maintenance support'
     ],
     popular: false,
@@ -20,11 +20,11 @@ const packages = [
   {
     id: 'premium',
     name: 'Premium Package',
-    target: 'Modern design & finishes',
-    price: 'High-End',
+    target: 'Modern 3-4 BHK Villas',
+    price: '₹2,200/sq.ft',
     features: [
       'High-quality branded materials',
-      'Modern architectural design',
+      'Modern architectural & Vastu design',
       'Premium electrical fixtures',
       'Modular kitchen setup',
       'False ceiling in living areas',
@@ -35,11 +35,11 @@ const packages = [
   {
     id: 'luxury',
     name: 'Luxury Package',
-    target: 'Complete turnkey solution',
-    price: 'Ultra-Premium',
+    target: 'Ultra-Luxury Bungalows',
+    price: '₹3,500+/sq.ft',
     features: [
       'Ultra-premium imported materials',
-      'Custom architecture & 3D planning',
+      'Custom 3D planning & complete Vastu',
       'Smart home integration (Alexa/Google)',
       'Complete interior & exterior design',
       'Italian marble / premium flooring',

@@ -5,12 +5,12 @@ import SectionWrapper from '../components/ui/SectionWrapper';
 import CtaBanner from '../components/sections/CtaBanner';
 
 const allProjects = [
-  { id: 1, title: 'The Royal Estate', category: 'Villas', image: '/projects/1.png', client: 'Luxury Estates Ltd', year: '2025', location: 'South Mumbai, India' },
-  { id: 2, title: 'Skyline Heights', category: 'Commercial', image: '/projects/2.png', client: 'Global Tech Corp', year: '2024', location: 'Pune IT Park' },
-  { id: 3, title: 'Modern Haven', category: 'Residential', image: '/projects/3.png', client: 'Private Owner', year: '2023', location: 'Navi Mumbai' },
-  { id: 4, title: 'Oasis Smart Home', category: 'Interiors', image: '/projects/4.png', client: 'HNI Client', year: '2024', location: 'Jalgaon, Maharashtra' },
-  { id: 5, title: 'Corporate Hub', category: 'Commercial', image: '/projects/5.png', client: 'Financial District', year: '2026', location: 'Bandra Kurla Complex' },
-  { id: 6, title: 'Zenith Villa', category: 'Villas', image: '/projects/6.png', client: 'Private Investor', year: '2025', location: 'Lonavala Hills' },
+  { id: 1, title: 'The Royal Estate', category: 'Villas', image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80', client: 'Luxury Estates Ltd', year: '2025', location: 'South Mumbai, India' },
+  { id: 2, title: 'Skyline Heights', category: 'Commercial', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80', client: 'Global Tech Corp', year: '2024', location: 'Pune IT Park' },
+  { id: 3, title: 'Modern Haven', category: 'Residential', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80', client: 'Private Owner', year: '2023', location: 'Navi Mumbai' },
+  { id: 4, title: 'Oasis Smart Home', category: 'Interiors', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80', client: 'HNI Client', year: '2024', location: 'Jalgaon, Maharashtra' },
+  { id: 5, title: 'Corporate Hub', category: 'Commercial', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80', client: 'Financial District', year: '2026', location: 'Bandra Kurla Complex' },
+  { id: 6, title: 'Zenith Villa', category: 'Villas', image: 'https://images.unsplash.com/photo-1613490908653-b0bf1a2818a7?auto=format&fit=crop&w=800&q=80', client: 'Private Investor', year: '2025', location: 'Lonavala Hills' },
 ];
 
 const categories = ['All', 'Residential', 'Villas', 'Commercial', 'Interiors'];
@@ -30,7 +30,7 @@ export default function Projects() {
     <div className="w-full">
       <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 bg-primary text-center">
         <div className="absolute inset-0 z-0">
-          <img src="/projects/2.png" alt="Projects" className="w-full h-full object-cover opacity-10" />
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2075&q=80" alt="Projects" className="w-full h-full object-cover opacity-10" />
         </div>
         <div className="relative z-10 px-6">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">Our Portfolio</h1>
