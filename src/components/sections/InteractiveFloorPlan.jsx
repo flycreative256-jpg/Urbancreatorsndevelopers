@@ -8,8 +8,7 @@ import {
   Float,
   useCursor,
   Text,
-  MeshTransmissionMaterial,
-  useTexture
+  MeshTransmissionMaterial
 } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion as framerMotion, AnimatePresence } from 'framer-motion';
@@ -30,19 +29,6 @@ function LuxurySpinner() {
         <p className="text-secondary tracking-widest text-[10px] mt-4 uppercase font-bold">Loading Floor Plan</p>
       </div>
     </Html>
-  );
-}
-
-// --- Textured Floor Component ---
-function TexturedFloor({ args, position, url, color = '#ffffff' }) {
-  const texture = useTexture(url);
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(args[0] / 2, args[2] / 2);
-  return (
-    <mesh position={position} receiveShadow>
-      <boxGeometry args={args} />
-      <meshStandardMaterial map={texture} color={color} roughness={0.2} metalness={0.1} />
-    </mesh>
   );
 }
 
@@ -248,15 +234,15 @@ function FloorPlanModel({ selectedRoom, setSelectedRoom }) {
         {/* Exterior Foundation */}
         <SolidFloor args={[10.4, 0.2, 8.4]} position={[0.5, -0.1, 0]} color="#1a1c20" />
         
-        {/* Living & Kitchen Floor (Marble) */}
-        <TexturedFloor 
+        {/* Living & Kitchen Floor (Marble-like solid) */}
+        <SolidFloor 
           args={[6, 0.1, 8]} position={[-2, 0.05, 0]} 
-          url="https://images.unsplash.com/photo-1590301157890-4810ed35a479?auto=format&fit=crop&w=512&q=80" 
+          color="#f1f2f6" roughness={0.1}
         />
-        {/* Bedroom Floor (Wood) */}
-        <TexturedFloor 
+        {/* Bedroom Floor (Wood-like solid) */}
+        <SolidFloor 
           args={[4, 0.1, 5]} position={[3, 0.05, -1.5]} 
-          url="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=512&q=80" 
+          color="#a4b0be" roughness={0.4} 
         />
         {/* Bathroom Floor (Dark Stone) */}
         <SolidFloor args={[4, 0.1, 3]} position={[3, 0.05, 2.5]} color="#111" roughness={0.1} />
