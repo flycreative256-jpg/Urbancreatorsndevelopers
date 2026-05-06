@@ -8,18 +8,18 @@ import {
   Float,
   useCursor,
   Text,
-  MeshTransmissionMaterial
+  MeshTransmissionMaterial,
+  useTexture
 } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion as framerMotion, AnimatePresence } from 'framer-motion';
 
-// --- Room Data & Abstract Architecture ---
-// We simulate a high-end luxury floor plan using sleek geometric forms.
+// --- Room Data ---
 const ROOMS = [
-  { id: 'living', name: 'Living Room', size: '450 Sq.Ft', color: '#f5f5f0', position: [0, 0, 0], scale: [4, 0.2, 4], info: 'Double-height ceiling with panoramic views.' },
-  { id: 'kitchen', name: 'Gourmet Kitchen', size: '280 Sq.Ft', color: '#e8e8e4', position: [-3, 0, -2.5], scale: [2, 0.2, 3], info: 'Italian marble countertops & smart appliances.' },
-  { id: 'bedroom', name: 'Master Suite', size: '350 Sq.Ft', color: '#ecece8', position: [3, 0, -2.5], scale: [2, 0.2, 3], info: 'Walk-in closet & luxury ensuite bathroom.' },
-  { id: 'deck', name: 'Pool Deck', size: '600 Sq.Ft', color: '#dcdccf', position: [0, -0.1, 4], scale: [6, 0.1, 3], info: 'Infinity edge pool with sun loungers.' },
+  { id: 'living', name: 'Living Room', size: '450 Sq.Ft', position: [-2, 0, 1.5], scale: [5, 0.1, 5], info: 'Double-height ceiling with panoramic views and premium sofa.' },
+  { id: 'kitchen', name: 'Gourmet Kitchen', size: '280 Sq.Ft', position: [-2, 0, -2.5], scale: [5, 0.1, 3], info: 'Italian marble countertops & smart appliances.' },
+  { id: 'bedroom', name: 'Master Suite', size: '350 Sq.Ft', position: [3, 0, -1.5], scale: [4, 0.1, 5], info: 'Walk-in closet, premium wood floors & smart lighting.' },
+  { id: 'bathroom', name: 'Luxury Bath', size: '150 Sq.Ft', position: [3, 0, 2.5], scale: [4, 0.1, 3], info: 'Freestanding tub and imported dark marble.' },
 ];
 
 function LuxurySpinner() {
@@ -27,60 +27,178 @@ function LuxurySpinner() {
     <Html center>
       <div className="flex flex-col items-center justify-center">
         <div className="w-12 h-12 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-secondary tracking-widest text-[10px] mt-4 uppercase font-bold">Loading Model</p>
+        <p className="text-secondary tracking-widest text-[10px] mt-4 uppercase font-bold">Loading Floor Plan</p>
       </div>
     </Html>
   );
 }
 
-function Room({ data, isSelected, onClick, onPointerOver, onPointerOut }) {
+// --- Textured Floor Component ---
+function TexturedFloor({ args, position, url, color = '#ffffff' }) {
+  const texture = useTexture(url);
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(args[0] / 2, args[2] / 2);
+  return (
+    <mesh position={position} receiveShadow>
+      <boxGeometry args={args} />
+      <meshStandardMaterial map={texture} color={color} roughness={0.2} metalness={0.1} />
+    </mesh>
+  );
+}
+
+function SolidFloor({ args, position, color, roughness = 0.8 }) {
+  return (
+    <mesh position={position} receiveShadow>
+      <boxGeometry args={args} />
+      <meshStandardMaterial color={color} roughness={roughness} />
+    </mesh>
+  );
+}
+
+// --- Architectural Elements ---
+function Wall({ args, position, rotation = [0, 0, 0] }) {
+  return (
+    <mesh position={position} rotation={rotation} castShadow receiveShadow>
+      <boxGeometry args={args} />
+      <meshStandardMaterial color="#f8f9fa" roughness={0.9} />
+    </mesh>
+  );
+}
+
+function GlassWall({ args, position, rotation = [0, 0, 0] }) {
+  return (
+    <mesh position={position} rotation={rotation} castShadow>
+      <boxGeometry args={args} />
+      <MeshTransmissionMaterial 
+        thickness={0.1} roughness={0.05} transmission={0.95} ior={1.5} color="#e0f7fa" 
+      />
+    </mesh>
+  );
+}
+
+// --- Furniture Elements ---
+function FurnitureSofa({ position, rotation = [0, 0, 0] }) {
+  return (
+    <group position={position} rotation={rotation}>
+      <mesh position={[0, 0.2, 0]} castShadow receiveShadow>
+        <boxGeometry args={[2.5, 0.4, 1]} />
+        <meshStandardMaterial color="#dcdde1" roughness={0.9} />
+      </mesh>
+      <mesh position={[0, 0.6, -0.4]} castShadow receiveShadow>
+        <boxGeometry args={[2.5, 0.5, 0.2]} />
+        <meshStandardMaterial color="#dcdde1" roughness={0.9} />
+      </mesh>
+      <mesh position={[-0.8, 0.2, 0.8]} castShadow receiveShadow>
+        <boxGeometry args={[0.9, 0.4, 1.6]} />
+        <meshStandardMaterial color="#dcdde1" roughness={0.9} />
+      </mesh>
+      <mesh position={[0.5, 0.25, 1]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.4, 0.4, 0.5, 32]} />
+        <meshStandardMaterial color="#2f3640" roughness={0.2} metalness={0.8} />
+      </mesh>
+      <mesh position={[0, 0.3, 3]} castShadow receiveShadow>
+        <boxGeometry args={[3, 0.6, 0.4]} />
+        <meshStandardMaterial color="#8b5a2b" roughness={0.7} />
+      </mesh>
+      <mesh position={[0, 1.2, 3]} castShadow>
+        <boxGeometry args={[2.4, 1.2, 0.05]} />
+        <meshStandardMaterial color="#111" roughness={0.1} metalness={0.9} />
+      </mesh>
+    </group>
+  );
+}
+
+function FurnitureKitchen({ position }) {
+  return (
+    <group position={position}>
+      <mesh position={[0, 0.5, 0]} castShadow receiveShadow>
+        <boxGeometry args={[2.5, 1, 1]} />
+        <meshStandardMaterial color="#f5f6fa" roughness={0.1} metalness={0.1} />
+      </mesh>
+      <mesh position={[0, 1.05, 0]} castShadow receiveShadow>
+        <boxGeometry args={[2.6, 0.1, 1.1]} />
+        <meshStandardMaterial color="#ffffff" roughness={0} metalness={0.2} />
+      </mesh>
+      <mesh position={[-0.8, 0.4, 0.8]} castShadow>
+        <cylinderGeometry args={[0.15, 0.15, 0.8, 16]} />
+        <meshStandardMaterial color="#e1b12c" roughness={0.3} metalness={0.8} />
+      </mesh>
+      <mesh position={[0.8, 0.4, 0.8]} castShadow>
+        <cylinderGeometry args={[0.15, 0.15, 0.8, 16]} />
+        <meshStandardMaterial color="#e1b12c" roughness={0.3} metalness={0.8} />
+      </mesh>
+      <mesh position={[0, 1, -1.8]} castShadow receiveShadow>
+        <boxGeometry args={[3, 2, 0.6]} />
+        <meshStandardMaterial color="#2f3640" roughness={0.8} />
+      </mesh>
+    </group>
+  );
+}
+
+function FurnitureBed({ position, rotation = [0, 0, 0] }) {
+  return (
+    <group position={position} rotation={rotation}>
+      <mesh position={[0, 0.25, 0]} castShadow receiveShadow>
+        <boxGeometry args={[2, 0.5, 2.2]} />
+        <meshStandardMaterial color="#8b5a2b" roughness={0.6} />
+      </mesh>
+      <mesh position={[0, 0.55, 0]} castShadow receiveShadow>
+        <boxGeometry args={[1.8, 0.3, 2]} />
+        <meshStandardMaterial color="#f5f6fa" roughness={0.9} />
+      </mesh>
+      <mesh position={[0, 0.8, -1.05]} castShadow receiveShadow>
+        <boxGeometry args={[2.2, 1.2, 0.1]} />
+        <meshStandardMaterial color="#2f3640" roughness={0.9} />
+      </mesh>
+      <mesh position={[-1.3, 0.3, -0.8]} castShadow receiveShadow>
+        <boxGeometry args={[0.4, 0.6, 0.4]} />
+        <meshStandardMaterial color="#8b5a2b" roughness={0.6} />
+      </mesh>
+      <mesh position={[1.3, 0.3, -0.8]} castShadow receiveShadow>
+        <boxGeometry args={[0.4, 0.6, 0.4]} />
+        <meshStandardMaterial color="#8b5a2b" roughness={0.6} />
+      </mesh>
+      <mesh position={[-1.3, 0.8, -0.8]} castShadow>
+        <sphereGeometry args={[0.15, 16, 16]} />
+        <meshStandardMaterial color="#fbc531" emissive="#fbc531" emissiveIntensity={0.5} />
+      </mesh>
+      <mesh position={[1.3, 0.8, -0.8]} castShadow>
+        <sphereGeometry args={[0.15, 16, 16]} />
+        <meshStandardMaterial color="#fbc531" emissive="#fbc531" emissiveIntensity={0.5} />
+      </mesh>
+    </group>
+  );
+}
+
+// --- Interaction Zone ---
+function InteractiveZone({ data, isSelected, onClick, onPointerOver, onPointerOut }) {
   const meshRef = useRef();
   
-  // Smoothly animate the Y position and scale when selected
   useFrame((state, delta) => {
-    const targetY = isSelected ? 0.5 : data.position[1];
-    const targetScaleY = isSelected ? data.scale[1] * 2 : data.scale[1];
+    const targetY = isSelected ? 0.05 : 0;
     meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, targetY, delta * 5);
-    meshRef.current.scale.y = THREE.MathUtils.lerp(meshRef.current.scale.y, targetScaleY, delta * 5);
   });
 
   return (
-    <group position={[data.position[0], 0, data.position[2]]}>
+    <group position={[data.position[0], 0.01, data.position[2]]}>
       <mesh
         ref={meshRef}
         onClick={(e) => { e.stopPropagation(); onClick(data); }}
         onPointerOver={(e) => { e.stopPropagation(); onPointerOver(data.id); }}
         onPointerOut={(e) => { e.stopPropagation(); onPointerOut(); }}
-        castShadow
-        receiveShadow
       >
-        <boxGeometry args={[data.scale[0], 1, data.scale[2]]} />
-        <meshStandardMaterial 
-          color={isSelected ? '#C29545' : data.color} 
-          roughness={0.2}
-          metalness={0.1}
-          envMapIntensity={1.5}
+        <boxGeometry args={[data.scale[0], 0.1, data.scale[2]]} />
+        <meshBasicMaterial 
+          color={isSelected ? '#e1b12c' : '#ffffff'} 
+          transparent 
+          opacity={isSelected ? 0.15 : 0} 
         />
       </mesh>
-      
-      {/* Decorative glass walls to make it look like a luxury floor plan */}
-      <mesh position={[0, 0.6, 0]}>
-        <boxGeometry args={[data.scale[0] - 0.2, 1, data.scale[2] - 0.2]} />
-        <MeshTransmissionMaterial 
-          thickness={0.5}
-          roughness={0}
-          transmission={0.9}
-          ior={1.5}
-          color={isSelected ? '#FDE68A' : '#ffffff'}
-        />
-      </mesh>
-      
-      {/* 3D Label */}
       {isSelected && (
         <Text
-          position={[0, 1.5, 0]}
-          fontSize={0.3}
-          color="#111"
+          position={[0, 2.5, 0]}
+          fontSize={0.4}
+          color="#e1b12c"
           anchorX="center"
           anchorY="middle"
           font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZhrib2Bg-4.ttf"
@@ -92,11 +210,10 @@ function Room({ data, isSelected, onClick, onPointerOver, onPointerOut }) {
   );
 }
 
+// --- Main Layout ---
 function FloorPlanModel({ selectedRoom, setSelectedRoom }) {
   const [hoveredRoom, setHoveredRoom] = useState(null);
   const groupRef = useRef();
-  
-  // Gyroscope tracking state
   const targetRotation = useRef({ x: 0, y: 0 });
 
   useCursor(hoveredRoom !== null);
@@ -104,41 +221,74 @@ function FloorPlanModel({ selectedRoom, setSelectedRoom }) {
   useEffect(() => {
     const handleOrientation = (e) => {
       if (!e.beta || !e.gamma) return;
-      // Beta (front-back tilt) -> mapped to X rotation
-      // Gamma (left-right tilt) -> mapped to Y rotation
-      targetRotation.current.x = THREE.MathUtils.clamp((e.beta - 45) * 0.01, -0.3, 0.3);
-      targetRotation.current.y = THREE.MathUtils.clamp(e.gamma * 0.01, -0.3, 0.3);
+      targetRotation.current.x = THREE.MathUtils.clamp((e.beta - 45) * 0.01, -0.2, 0.2);
+      targetRotation.current.y = THREE.MathUtils.clamp(e.gamma * 0.01, -0.2, 0.2);
     };
-    
-    // Only register if device supports orientation
     if (typeof window !== 'undefined' && window.DeviceOrientationEvent) {
       window.addEventListener('deviceorientation', handleOrientation);
     }
-    return () => {
-      window.removeEventListener('deviceorientation', handleOrientation);
-    };
+    return () => window.removeEventListener('deviceorientation', handleOrientation);
   }, []);
 
-  // Subtle Parallax & Device Gyroscope Effect
   useFrame((state, delta) => {
-    // Basic mouse parallax (desktop)
     if (state.pointer) {
-       targetRotation.current.x = -(state.pointer.y * Math.PI) / 12;
-       targetRotation.current.y = (state.pointer.x * Math.PI) / 12;
+       targetRotation.current.x = -(state.pointer.y * Math.PI) / 16;
+       targetRotation.current.y = (state.pointer.x * Math.PI) / 16;
     }
-    
-    // Smooth interpolation for rotation
     if (groupRef.current) {
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetRotation.current.y, delta * 2);
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetRotation.current.x, delta * 2);
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetRotation.current.y, delta * 3);
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetRotation.current.x, delta * 3);
     }
   });
 
   return (
-    <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.2}>
-      <group ref={groupRef} position={[0, -1, 0]}>
+    <Float speed={1.5} rotationIntensity={0.05} floatIntensity={0.1}>
+      <group ref={groupRef} position={[0, -0.5, 0]}>
+        
+        {/* Exterior Foundation */}
+        <SolidFloor args={[10.4, 0.2, 8.4]} position={[0.5, -0.1, 0]} color="#1a1c20" />
+        
+        {/* Living & Kitchen Floor (Marble) */}
+        <TexturedFloor 
+          args={[6, 0.1, 8]} position={[-2, 0.05, 0]} 
+          url="https://images.unsplash.com/photo-1590301157890-4810ed35a479?auto=format&fit=crop&w=512&q=80" 
+        />
+        {/* Bedroom Floor (Wood) */}
+        <TexturedFloor 
+          args={[4, 0.1, 5]} position={[3, 0.05, -1.5]} 
+          url="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=512&q=80" 
+        />
+        {/* Bathroom Floor (Dark Stone) */}
+        <SolidFloor args={[4, 0.1, 3]} position={[3, 0.05, 2.5]} color="#111" roughness={0.1} />
+
+        {/* Outer Walls */}
+        <Wall args={[10, 2.5, 0.2]} position={[0.5, 1.25, -4.05]} />
+        <Wall args={[10, 2.5, 0.2]} position={[0.5, 1.25, 4.05]} />
+        <Wall args={[0.2, 2.5, 8]} position={[-5.05, 1.25, 0]} />
+        <Wall args={[0.2, 2.5, 8]} position={[5.05, 1.25, 0]} />
+
+        {/* Inner Partitions */}
+        <Wall args={[0.2, 2.5, 6]} position={[0.9, 1.25, -1]} />
+        <Wall args={[4, 2.5, 0.2]} position={[3, 1.25, 0.9]} />
+
+        {/* Windows / Glass Fronts (Overriding parts of outer walls visually) */}
+        <GlassWall args={[4, 2.2, 0.1]} position={[-2.5, 1.25, 4.06]} />
+        <GlassWall args={[3, 2.2, 0.1]} position={[3, 1.25, 4.06]} />
+
+        {/* Furniture Groups */}
+        <FurnitureSofa position={[-2, 0.1, 0]} />
+        <FurnitureKitchen position={[-2, 0.1, -2.5]} />
+        <FurnitureBed position={[3, 0.1, -2]} />
+        
+        {/* Bathroom Tub */}
+        <mesh position={[3, 0.4, 2.5]} castShadow>
+          <boxGeometry args={[1.5, 0.6, 0.8]} />
+          <meshStandardMaterial color="#ffffff" roughness={0.1} />
+        </mesh>
+
+        {/* Interactive Zones over each room */}
         {ROOMS.map((room) => (
-          <Room 
+          <InteractiveZone 
             key={room.id}
             data={room}
             isSelected={selectedRoom?.id === room.id}
@@ -147,17 +297,12 @@ function FloorPlanModel({ selectedRoom, setSelectedRoom }) {
             onPointerOut={() => setHoveredRoom(null)}
           />
         ))}
-        
-        {/* Base Foundation */}
-        <mesh position={[0, -0.3, 0]} receiveShadow>
-          <boxGeometry args={[12, 0.4, 12]} />
-          <meshStandardMaterial color="#1a1a1a" roughness={0.8} />
-        </mesh>
       </group>
     </Float>
   );
 }
 
+// --- Main Export ---
 export default function InteractiveFloorPlan() {
   const [selectedRoom, setSelectedRoom] = useState(null);
 
@@ -198,29 +343,35 @@ export default function InteractiveFloorPlan() {
         </div>
       </div>
 
+      {/* 3D Canvas */}
       <div className="flex-1 w-full h-full cursor-grab active:cursor-grabbing">
-        <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 8, 12], fov: 45 }}>
+        <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 10, 14], fov: 40 }}>
           <Suspense fallback={<LuxurySpinner />}>
             <color attach="background" args={['#030407']} />
             
-            {/* Elegant Lighting */}
-            <ambientLight intensity={0.5} />
+            {/* Elegant Cinematic Lighting */}
+            <ambientLight intensity={0.4} />
             <directionalLight 
               castShadow 
-              position={[5, 10, 5]} 
-              intensity={1.5} 
-              shadow-mapSize={[1024, 1024]}
+              position={[8, 15, 8]} 
+              intensity={2} 
+              shadow-mapSize={[2048, 2048]}
+              shadow-camera-far={50}
+              shadow-camera-left={-10}
+              shadow-camera-right={10}
+              shadow-camera-top={10}
+              shadow-camera-bottom={-10}
             />
-            <Environment preset="city" />
+            <Environment preset="apartment" />
 
             {/* Smooth Parallax Interaction */}
             <PresentationControls
               global
               config={{ mass: 2, tension: 500 }}
               snap={{ mass: 4, tension: 1500 }}
-              rotation={[0, 0.3, 0]}
-              polar={[-Math.PI / 3, Math.PI / 3]}
-              azimuth={[-Math.PI / 1.4, Math.PI / 2]}
+              rotation={[0, 0.4, 0]}
+              polar={[-Math.PI / 4, Math.PI / 4]}
+              azimuth={[-Math.PI / 1.5, Math.PI / 2]}
             >
               <FloorPlanModel selectedRoom={selectedRoom} setSelectedRoom={setSelectedRoom} />
             </PresentationControls>
@@ -228,9 +379,9 @@ export default function InteractiveFloorPlan() {
             {/* Soft ground shadow for realism */}
             <ContactShadows 
               position={[0, -1.4, 0]} 
-              opacity={0.4} 
-              scale={20} 
-              blur={2} 
+              opacity={0.6} 
+              scale={25} 
+              blur={2.5} 
               far={4} 
             />
           </Suspense>
