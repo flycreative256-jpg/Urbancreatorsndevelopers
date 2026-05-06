@@ -43,10 +43,10 @@ export default function Footer() {
               Design. Build. Elevate. We are a premium luxury construction company specializing in high-end homes, villas, and commercial spaces.
             </p>
             <div className="flex justify-center lg:justify-start space-x-4">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#E4405F] hover:text-white transition-colors">
+              <a href="https://www.instagram.com/urbancreatorsndevelopers/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#E4405F] hover:text-white transition-colors">
                 <InstagramIcon size={18} />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#1877F2] hover:text-white transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61589318635002" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#1877F2] hover:text-white transition-colors">
                 <FacebookIcon size={18} />
               </a>
               <a href="https://wa.me/917218177879" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#25D366] hover:text-white transition-colors">
