@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 export default function CustomCursor() {
-  // Use framer-motion values for immediate and smooth updates
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   
-  // Spring configuration for ultra-smooth trailing effect
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
+  // Looser spring for a much more liquid, fluid feel
+  const springConfig = { damping: 20, stiffness: 150, mass: 0.4 };
   const smoothX = useSpring(cursorX, springConfig);
   const smoothY = useSpring(cursorY, springConfig);
 
   const [isHovering, setIsHovering] = useState(false);
+  const [isText, setIsText] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Hide default cursor across the entire application
     document.body.classList.add('hide-default-cursor');
 
     const handleMouseMove = (e) => {
@@ -26,27 +26,31 @@ export default function CustomCursor() {
 
     const handleMouseOver = (e) => {
       const target = e.target;
-      // Check if element or its parent is clickable
+      const tagName = target.tagName ? target.tagName.toLowerCase() : '';
+      
       const isClickable = 
-        target.tagName.toLowerCase() === 'a' || 
-        target.tagName.toLowerCase() === 'button' ||
+        tagName === 'a' || 
+        tagName === 'button' ||
         target.closest('a') || 
         target.closest('button') ||
         window.getComputedStyle(target).cursor === 'pointer';
         
+      const isTextElement = 
+        ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'li'].includes(tagName) && !isClickable;
+
       setIsHovering(isClickable);
+      setIsText(isTextElement);
     };
 
-    const handleMouseLeave = () => {
-      setIsVisible(false);
-    };
-
-    const handleMouseEnter = () => {
-      setIsVisible(true);
-    };
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
 
@@ -54,21 +58,22 @@ export default function CustomCursor() {
       document.body.classList.remove('hide-default-cursor');
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
   }, [cursorX, cursorY, isVisible]);
 
-  // Don't render on touch devices
   if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
     return null;
   }
 
   return (
     <>
-      {/* Outer smooth trailing ring */}
+      {/* Outer fluid ring with mix-blend-difference */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-secondary pointer-events-none z-[10000] hidden md:flex items-center justify-center"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full border pointer-events-none z-[10000] hidden md:block mix-blend-difference"
         style={{
           x: smoothX,
           y: smoothY,
@@ -77,16 +82,16 @@ export default function CustomCursor() {
           opacity: isVisible ? 1 : 0
         }}
         animate={{
-          scale: isHovering ? 1.5 : 1,
-          backgroundColor: isHovering ? 'rgba(194, 149, 69, 0.1)' : 'transparent',
-          borderColor: isHovering ? 'rgba(194, 149, 69, 0)' : 'rgba(194, 149, 69, 0.5)'
+          scale: isClicking ? 0.7 : (isHovering ? 1.6 : (isText ? 1.2 : 1)),
+          backgroundColor: isHovering ? 'rgba(255, 255, 255, 1)' : (isText ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0)'),
+          borderColor: isHovering ? 'rgba(255, 255, 255, 0)' : 'rgba(255, 255, 255, 1)'
         }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       />
       
       {/* Inner precise dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-secondary rounded-full pointer-events-none z-[10000] hidden md:block"
+        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[10001] hidden md:block mix-blend-difference"
         style={{
           x: cursorX,
           y: cursorY,
@@ -95,10 +100,10 @@ export default function CustomCursor() {
           opacity: isVisible ? 1 : 0
         }}
         animate={{
-          scale: isHovering ? 0 : 1,
-          opacity: isHovering ? 0 : (isVisible ? 1 : 0)
+          scale: isClicking ? 0 : (isHovering ? 0 : (isText ? 0 : 1)),
+          opacity: isHovering || isText || isClicking ? 0 : (isVisible ? 1 : 0)
         }}
-        transition={{ type: 'tween', ease: 'backOut', duration: 0.1 }}
+        transition={{ type: 'tween', ease: 'backOut', duration: 0.15 }}
       />
     </>
   );
