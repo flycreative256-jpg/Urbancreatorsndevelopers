@@ -8,28 +8,28 @@ const projects = [
     id: 1,
     title: 'The Royal Estate',
     category: 'Luxury Villa',
-    image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80',
+    image: '/projects/1.png',
     colSpan: 'col-span-1 md:col-span-2 row-span-2'
   },
   {
     id: 2,
     title: 'Skyline Heights',
     category: 'Commercial',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+    image: '/projects/2.png',
     colSpan: 'col-span-1 row-span-1'
   },
   {
     id: 3,
     title: 'Modern Haven',
     category: 'Residential',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
+    image: '/projects/3.png',
     colSpan: 'col-span-1 row-span-1'
   },
   {
     id: 4,
     title: 'Oasis Smart Home',
     category: 'Turnkey Project',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
+    image: '/projects/4.png',
     colSpan: 'col-span-1 md:col-span-2 row-span-1'
   }
 ];
@@ -65,13 +65,13 @@ export default function FeaturedProjects() {
             style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
             className={`relative rounded-xl overflow-hidden group cursor-pointer ${project.colSpan} h-[280px] sm:h-[300px] md:h-auto will-change-transform`}
           >
-            <img 
-              src={project.image} 
-              alt={project.title} 
+            <img
+              src={project.image}
+              alt={project.title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90"></div>
-            
+
             <div className="absolute bottom-0 left-0 p-6 sm:p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
               <span className="text-secondary text-xs sm:text-sm font-semibold tracking-wider uppercase mb-2 block">
                 {project.category}

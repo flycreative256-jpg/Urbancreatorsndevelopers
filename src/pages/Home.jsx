@@ -4,7 +4,6 @@ import ServicesPreview from '../components/sections/ServicesPreview';
 import ServicePackages from '../components/sections/ServicePackages';
 import AboutPreview from '../components/sections/AboutPreview';
 import FeaturedProjects from '../components/sections/FeaturedProjects';
-import InteractiveFloorPlan from '../components/sections/InteractiveFloorPlan';
 import WhyChooseUs from '../components/sections/WhyChooseUs';
 import Process from '../components/sections/Process';
 import Testimonials from '../components/sections/Testimonials';
@@ -23,7 +22,6 @@ export default function Home() {
       <ServicePackages />
       <AboutPreview />
       <FeaturedProjects />
-      <InteractiveFloorPlan />
       <WhyChooseUs />
       <Process />
       <Testimonials />

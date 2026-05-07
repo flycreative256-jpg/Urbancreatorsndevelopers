@@ -5,12 +5,12 @@ import SectionWrapper from '../components/ui/SectionWrapper';
 import CtaBanner from '../components/sections/CtaBanner';
 
 const allProjects = [
-  { id: 1, title: 'The Royal Estate', category: 'Villas', image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80', client: 'Luxury Estates Ltd', year: '2025', location: 'South Mumbai, India' },
-  { id: 2, title: 'Skyline Heights', category: 'Commercial', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80', client: 'Global Tech Corp', year: '2024', location: 'Pune IT Park' },
-  { id: 3, title: 'Modern Haven', category: 'Residential', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80', client: 'Private Owner', year: '2023', location: 'Navi Mumbai' },
-  { id: 4, title: 'Oasis Smart Home', category: 'Interiors', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80', client: 'HNI Client', year: '2024', location: 'Jalgaon, Maharashtra' },
-  { id: 5, title: 'Corporate Hub', category: 'Commercial', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80', client: 'Financial District', year: '2026', location: 'Bandra Kurla Complex' },
-  { id: 6, title: 'Zenith Villa', category: 'Villas', image: 'https://images.unsplash.com/photo-1613490908653-b0bf1a2818a7?auto=format&fit=crop&w=800&q=80', client: 'Private Investor', year: '2025', location: 'Lonavala Hills' },
+  { id: 1, title: 'The Royal Estate', category: 'Villas', image: '/projects/1.png', client: 'Luxury Estates Ltd', year: '2025', location: 'South Mumbai, India' },
+  { id: 2, title: 'Skyline Heights', category: 'Commercial', image: '/projects/2.png', client: 'Global Tech Corp', year: '2024', location: 'Pune IT Park' },
+  { id: 3, title: 'Modern Haven', category: 'Residential', image: '/projects/3.png', client: 'Private Owner', year: '2023', location: 'Navi Mumbai' },
+  { id: 4, title: 'Oasis Smart Home', category: 'Interiors', image: '/projects/4.png', client: 'HNI Client', year: '2024', location: 'Jalgaon, Maharashtra' },
+  { id: 5, title: 'Corporate Hub', category: 'Commercial', image: '/projects/5.png', client: 'Financial District', year: '2026', location: 'Bandra Kurla Complex' },
+  { id: 6, title: 'Zenith Villa', category: 'Villas', image: '/projects/6.png', client: 'Private Investor', year: '2025', location: 'Lonavala Hills' },
 ];
 
 const categories = ['All', 'Residential', 'Villas', 'Commercial', 'Interiors'];
@@ -22,15 +22,15 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const filteredProjects = activeCategory === 'All' 
-    ? allProjects 
+  const filteredProjects = activeCategory === 'All'
+    ? allProjects
     : allProjects.filter(p => p.category === activeCategory);
 
   return (
     <div className="w-full">
       <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 bg-primary text-center">
         <div className="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2075&q=80" alt="Projects" className="w-full h-full object-cover opacity-10" />
+          <img src="/projects/2.png" alt="Projects" className="w-full h-full object-cover opacity-10" />
         </div>
         <div className="relative z-10 px-6">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">Our Portfolio</h1>
@@ -44,11 +44,10 @@ export default function Projects() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 sm:px-6 py-2 rounded-full font-bold text-[10px] sm:text-sm uppercase tracking-wider transition-all duration-300 ${
-                activeCategory === cat 
-                  ? 'btn-liquid-gold shadow-[0_0_20px_rgba(194,149,69,0.3)]' 
+              className={`px-4 sm:px-6 py-2 rounded-full font-bold text-[10px] sm:text-sm uppercase tracking-wider transition-all duration-300 ${activeCategory === cat
+                  ? 'btn-liquid-gold shadow-[0_0_20px_rgba(194,149,69,0.3)]'
                   : 'btn-liquid text-gray-400 hover:text-white'
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -103,7 +102,7 @@ export default function Projects() {
               className="relative w-full max-w-5xl glass-dark-liquid rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[95vh] sm:max-h-[90vh] border border-white/20"
             >
               {/* Close Button */}
-              <button 
+              <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-secondary transition-colors"
               >
@@ -125,7 +124,7 @@ export default function Projects() {
               <div className="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{selectedProject.title}</h2>
                 <div className="w-16 h-1 bg-secondary mb-8"></div>
-                
+
                 <p className="text-gray-300 leading-relaxed mb-8">
                   A masterclass in modern architecture and luxury design. {selectedProject.title} represents the pinnacle of our engineering excellence, featuring sustainable materials, smart home integration, and unparalleled aesthetic brilliance. Designed to exceed all expectations.
                 </p>
@@ -145,7 +144,7 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <button 
+                <button
                   onClick={() => window.location.href = '/contact'}
                   className="w-full py-4 btn-liquid-gold text-primary font-bold uppercase tracking-wider rounded-xl hover:scale-[1.02] transition-transform"
                 >
